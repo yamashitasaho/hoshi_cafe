@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root "static_pages#top" # TOPページ
   resources :posts, only: [ :index ] # 投稿一覧
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
