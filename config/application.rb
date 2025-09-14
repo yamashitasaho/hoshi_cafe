@@ -23,5 +23,14 @@ module Myapp
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.generators do |g|
+      g.helper false           # helperファイルは基本不要
+      g.assets false           # Sprocketsアセット不要
+      g.stylesheets false      # 個別CSS不要（Tailwind使用時）
+      g.jbuilder false         # JSON APIを使わないなら不要
+      g.test_framework nil   # 今はテスト書かないからnil
+    end
+
+    # 基本設定
   end
 end
