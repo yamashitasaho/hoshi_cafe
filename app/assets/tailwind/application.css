@@ -5,5 +5,14 @@
 @source "../../../app/views/**/*";
 
 @plugin "daisyui" {
-    themes: light --default, dark --prefersdark, retro;
+  themes: light --default, dark --prefersdark, retro;
+  }
+
+  @plugin "daisyui/theme" {
+    name: "retro";
+    default: true;
+    --color-primary: #A67C6B;
+    --color-secondary: #F1D9E2;
+    --color-accent: #6A483A;
+    --color-neutral: #FFFFFF;
   }
