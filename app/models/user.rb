@@ -10,4 +10,5 @@ class User < ApplicationRecord
             format: { with: /\A[a-zA-Z0-9_.~-]+\z/,
             message: I18n.t("activerecord.attributes.user.username_format") }, # 文字種制限
             length: { minimum: 3, maximum: 20 }               # 文字数制限
+  has_many :posts, dependent: :destroy
 end
