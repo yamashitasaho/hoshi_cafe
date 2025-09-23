@@ -1,4 +1,6 @@
 # ユーザー作成（usernameで英数のみ）
+if User.count == 0 && Post.count == 0
+# デプロイ時の重複を防ぐ
 10.times do |i|
     User.create!(
       username: "user#{i + 1}",
@@ -50,3 +52,7 @@
       updated_at: random_time
     )
   end
+
+else
+  puts "データが既に存在するためseedをスキップしました"
+end
