@@ -33,7 +33,6 @@ module Myapp
 
     # 基本設定
     config.i18n.default_locale = :ja
-    config.i18n.default_locale = :ja
     # i18n
   end
 end
