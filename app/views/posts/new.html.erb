@@ -1,24 +1,24 @@
 <div class="container mx-auto px-4 py-6">
-  <h1 class="text-2xl font-bold mb-6">新規投稿</h1>
+  <h1 class="text-2xl font-bold mb-6"><%= t('.title') %></h1>
   
   <%= form_with model: @post, local: true do |f| %>
     <fieldset class="fieldset bg-secondary text-base p-4 pb-20">
 
       <!-- 都道府県 -->
       <div class="form-control mb-4">
-        <%= f.label :region, "都道府県", class: "label-accent" %>
+        <%= f.label :region, class: "label-accent" %>
         <%= f.text_field :region, class: "input bg-neutral w-full", placeholder: "例: 東京都" %>
       </div>
 
       <!-- 店名 -->
       <div class="form-control mb-4">
-        <%= f.label :shop_name, "店名", class: "label-accent" %>
+        <%= f.label :shop_name, class: "label-accent" %>
         <%= f.text_field :shop_name, class: "input bg-neutral w-full", placeholder: "例: スターバックス渋谷店" %>
       </div>
 
       <!-- 評価 -->
       <div class="form-control mb-4">
-        <%= f.label :rating, "総合評価", class: "label-accent" %>
+        <%= f.label :rating, class: "label-accent" %>
           <div class="rating rating-lg flex space-x-2">
             <% %w[very_poor poor ordinary good excellent].each_with_index do |value, index| %>
             <%= f.radio_button :rating, index + 1, 
@@ -30,13 +30,13 @@
 
       <!-- レビュー -->
       <div class="form-control mb-4">
-        <%= f.label :body, "レビュー", class: "label-accent" %>
+        <%= f.label :body, class: "label-accent" %>
         <%= f.text_area :body, class: "textarea textarea-bordered bg-neutral w-full", rows: "4", placeholder: "カフェの感想を書いてください..." %>
       </div>
-      
+
       <!-- 投稿ボタン -->
       <div class="form-control mt-6">
-        <%= f.submit "投稿する", class: "btn btn-primary text-neutral w-full" %>
+        <%= f.submit t('.submit'), class: "btn btn-primary text-neutral w-full" %>
       </div>
     </fieldset>
   <% end %>

@@ -1,0 +1,15 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      post: 投稿
+    attributes:
+      user:
+        username: "ユーザー名"
+        email: "メールアドレス"
+        password: "パスワード"
+      post:
+        region: "都道府県"
+        shop_name: "店名"
+        rating: "評価"
+        body: "レビュー"
