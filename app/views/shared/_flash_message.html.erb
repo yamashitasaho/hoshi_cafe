@@ -1,3 +1,10 @@
 <%# devise フラッシュメッセージ %>
-<p class="notice"><%= notice %></p>
-<p class="alert bg-secondary"><%= alert %></p>
+<div class="mt-2">
+  <% if notice %>
+    <p class="alert bg-green-400/50 text-neutral"><%= notice %></p>
+  <% end %>
+
+  <% if alert %>
+    <p class="alert bg-error/50 text-neutral "><%= alert %></p>
+  <% end %>
+</div>
