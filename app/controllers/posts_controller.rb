@@ -5,8 +5,9 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+    @post = Post.new(rating: 3)
   end
+  # デフォルトで3点を設定
 
   def create
     @post = current_user.posts.build(post_params)

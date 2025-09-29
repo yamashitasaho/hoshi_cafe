@@ -13,3 +13,10 @@ ja:
         shop_name: "店名"
         rating: "評価"
         body: "レビュー"
+
+    errors:
+      models:
+        user:
+          attributes:
+            username:
+              username_format: "は英数字とアンダースコアのみ使用できます"
