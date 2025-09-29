@@ -1,8 +1,8 @@
-<% if resource.errors.any? %>
+<% if object.errors.any? %>
   <div class="mt-2 mb-4" data-turbo-cache="false">
     <div class="alert bg-error/50 text-neutral">
       <ul class="list-disc list-inside space-y-1">
-        <% resource.errors.full_messages.each do |message| %>
+        <% object.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
