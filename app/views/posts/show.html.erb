@@ -21,20 +21,25 @@
       </div>
       
       <!-- 地域・店名 -->
-      <div class="flex text-base gap-2 mb-2">
-        <svg class="size-[1.5em] flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <g fill="currentColor" stroke-linejoin="miter" stroke-linecap="butt">
-            <polyline points="1 11 12 2 23 11" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2"></polyline>
-            <path d="m5,13v7c0,1.105.895,2,2,2h10c1.105,0,2-.895,2-2v-7" fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></path>
-            <line x1="12" y1="22" x2="12" y2="18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></line>
-          </g>
-        </svg>
-        <div class="flex flex-col text-base">
-          <span class="whitespace-pre-wrap"><%= @post.region %></span>
-          <span class="whitespace-pre-wrap"><%= @post.shop_name %></span>
+      <div class="flex flex-col gap-0.5 mb-2">
+        <div class="flex items-center gap-1.5">
+          <svg class="size-[1em] text-base-content/60 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <span class="text-sm text-base-content/60"><%= @post.region %></span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="size-[1.2em] flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <g fill="currentColor" stroke-linejoin="miter" stroke-linecap="butt">
+              <polyline points="1 11 12 2 23 11" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2"></polyline>
+               <path d="m5,13v7c0,1.105.895,2,2,2h10c1.105,0,2-.895,2-2v-7" fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></path>
+              <line x1="12" y1="22" x2="12" y2="18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></line>
+            </g>
+          </svg>
+          <span class="font-medium text-lg"><%= @post.shop_name %></span>
         </div>
       </div>
-      
       <!-- 画像エリア -->
       <div class="bg-gray-200 aspect-square w-full rounded mb-2"></div>
       

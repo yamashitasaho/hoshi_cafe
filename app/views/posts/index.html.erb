@@ -1,45 +1,8 @@
 <div class="container mx-auto px-4 py-6 pb-20">
   <h1 class="text-2xl font-bold mb-6"><%= t('.title') %></h1>
-  
+
   <!-- 投稿カードグリッド -->
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 px-2">
-    <% @posts.each do |post| %>
-      <div class="card bg-neutral shadow-sm w-72 mx-auto h-96">
-        <div class="card-body p-6 flex flex-col h-full">
-          <!-- ユーザー情報 -->
-          <div class="flex items-center gap-2 text-xs">
-            <div class="avatar">
-              <div class="w-6 rounded-full">
-                <div class="bg-secondary w-6 h-6 rounded-full"></div>
-              </div>
-            </div>
-            <%= post.user.username %>
-            <span class="text-accent/70"><%= post.created_at.strftime("%Y/%m/%d %H:%M") %></span>
-            <div class="badge badge-secondary text-accent badge-sm rounded-2xl">PR</div>
-          </div>
-          
-          <!-- 地域・店名 -->
-          <div class="flex items-center gap-2 mt-2 h-8">
-            <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="currentColor" stroke-linejoin="miter" stroke-linecap="butt"><polyline points="1 11 12 2 23 11" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2"></polyline><path d="m5,13v7c0,1.105.895,2,2,2h10c1.105,0,2-.895,2-2v-7" fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></path><line x1="12" y1="22" x2="12" y2="18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></line></g></svg>
-            <span class="text-sm whitespace-nowrap "><%= post.region %></span>
-            <span class="font-medium whitespace-nowrap overflow-hidden"><%= post.shop_name %></span>
-          </div>
-          
-          <!-- 画像エリア -->
-          <div class="bg-gray-200 aspect-square w-full rounded mt-2 "></div>
-          
-          <!-- 評価 -->
-          <div class="rating rating-sm mt-0.5">
-            <% (1..5).each do |i| %>
-              <input type="radio" class="mask mask-star-2 bg-primary " 
-                     disabled <%= 'checked' if i <= post.rating %> />
-            <% end %>
-          </div>
-
-          <!-- 他の人の投稿はブックマークアイコン -->
-          <!-- 自分の投稿は編集アイコン、削除アイコン -->
-        </div>
-      </div>
-    <% end %>
+    <%= render @posts %>
   </div>
 </div>
