@@ -1,0 +1,39 @@
+ <!-- 投稿カード -->
+<div class="card bg-neutral shadow-sm w-72 mx-auto h-96">
+  <div class="card-body p-6 flex flex-col h-full">
+    <!-- ユーザー情報 -->
+    <div class="flex items-center gap-2 text-xs">
+      <div class="avatar">
+        <div class="w-6 rounded-full">
+          <div class="bg-secondary w-6 h-6 rounded-full"></div>
+        </div>
+      </div>
+      <%= truncate(post.user.username, length: 12, omission: '...') %>
+      <span class="text-accent/70"><%= post.created_at.strftime("%Y/%m/%d") %></span>
+      <div class="badge badge-secondary text-accent badge-sm rounded-2xl ml-auto">PR</div>
+    </div>
+    
+    <!-- 地域・店名 -->
+    <div class="flex items-center gap-2 mt-2 h-8">
+      <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="currentColor" stroke-linejoin="miter" stroke-linecap="butt"><polyline points="1 11 12 2 23 11" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2"></polyline><path d="m5,13v7c0,1.105.895,2,2,2h10c1.105,0,2-.895,2-2v-7" fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></path><line x1="12" y1="22" x2="12" y2="18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></line></g></svg>
+      <span class="text-sm whitespace-nowrap"><%= truncate(post.region, length:4 , omission: '') %></span>
+      <span class="font-medium whitespace-nowrap overflow-hidden">
+        <%= link_to truncate(post.shop_name, length: 13, omission: '...'), post_path(post) %>
+      </span>
+    </div>
+    
+    <!-- 画像エリア -->
+    <div class="bg-gray-200 aspect-square w-full rounded mt-2"></div>
+    
+    <!-- 評価 -->
+    <div class="rating rating-sm mt-0.5">
+      <% (1..5).each do |i| %>
+        <input type="radio" class="mask mask-star-2 bg-primary" 
+               disabled <%= 'checked' if i <= post.rating %> />
+      <% end %>
+    </div>
+    
+    <!-- 他の人の投稿はブックマークアイコン -->
+    <!-- 自分の投稿は編集アイコン、削除アイコン -->
+  </div>
+</div>
