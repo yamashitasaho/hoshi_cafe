@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root "static_pages#top" # TOPページ
-  resources :posts, only: %i[index new create] # 投稿一覧,新規投稿
+  resources :posts, only: %i[index new create show] # 投稿一覧,新規投稿,投稿詳細
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

@@ -21,7 +21,9 @@
   <body class="bg-secondary min-h-screen flex flex-col">
     <%= render 'shared/header' %>
     <%= render 'shared/flash_message' %>
-      <%= yield %>
+    <main class="flex-grow">
+        <%= yield %>
+    </main>
     <%= render 'shared/footer' %>
   </body>
 </html>
