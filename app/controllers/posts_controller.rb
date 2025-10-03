@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index ]
+  before_action :set_user_post, only: [:edit, :update, :destroy]
+
   def index
     @posts = Post.includes(:user)
   end
@@ -25,11 +27,11 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = current_user.posts.find(params[:id])
+    # @postは set_user_post で既にセット済み
   end
 
   def update
-    @post = current_user.posts.find(params[:id])
+    # @postは set_user_post で既にセット済み
     if @post.update(post_params)
       redirect_to post_path(@post), notice: t("defaults.flash_message.updated", item: Post.model_name.human), status: :see_other
     else
@@ -39,8 +41,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    post = current_user.posts.find(params[:id])
-    post.destroy!
+    @post.destroy!  # set_user_postで取得済みの@postを使う
     redirect_to posts_path, notice: t('defaults.flash_message.deleted', item: Post.model_name.human), status: :see_other
   end
   # HTTPステータスコード 303 "See Other" を送信
@@ -49,5 +50,10 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:region, :shop_name, :rating, :body)
+  end
+
+  def set_user_post
+    @post = current_user.posts.find_by(id: params[:id])
+    redirect_to posts_path, alert: t('defaults.errors.unauthorized_access') unless @post
   end
 end
