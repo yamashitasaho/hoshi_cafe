@@ -12,4 +12,9 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  def own?(object)
+    id == object&.user_id
+  end
+  # ログインしてるユーザーID＝投稿したユーザーID
 end

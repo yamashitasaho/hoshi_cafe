@@ -4,6 +4,9 @@ ja:
       title: "投稿一覧"
     new:
       title: "新規投稿"
+    edit:
+      title: "投稿編集"
+    form:
       submit: "投稿する"
 
   shared:
@@ -16,6 +19,9 @@ ja:
       my_page: "マイページ"
 
   defaults:
+    create: "作成"
+    post: "投稿"
+    delete_confirm: "削除しますか？"
     flash_message:
       created: "%{item}を作成しました"
       not_created: "%{item}を作成できませんでした"
