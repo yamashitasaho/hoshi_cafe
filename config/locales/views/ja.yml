@@ -29,3 +29,5 @@ ja:
       not_updated: "%{item}を更新できませんでした"
       deleted: "%{item}を削除しました"
       not_deleted: "%{item}を削除できませんでした"
+    errors:
+      unauthorized_access: "不正なアクセスです"
