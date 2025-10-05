@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index ]
-  before_action :set_user_post, only: [:edit, :update, :destroy]
+  before_action :set_user_post, only: [ :edit, :update, :destroy ]
+  # 自分の投稿かをチェック
 
   def index
     @posts = Post.includes(:user)
@@ -42,7 +43,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy!  # set_user_postで取得済みの@postを使う
-    redirect_to posts_path, notice: t('defaults.flash_message.deleted', item: Post.model_name.human), status: :see_other
+    redirect_to posts_path, notice: t("defaults.flash_message.deleted", item: Post.model_name.human), status: :see_other
   end
   # HTTPステータスコード 303 "See Other" を送信
 
@@ -54,6 +55,6 @@ class PostsController < ApplicationController
 
   def set_user_post
     @post = current_user.posts.find_by(id: params[:id])
-    redirect_to posts_path, alert: t('defaults.errors.unauthorized_access') unless @post
+    redirect_to posts_path, alert: t("defaults.errors.unauthorized_access") unless @post
   end
 end
