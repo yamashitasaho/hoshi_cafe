@@ -1,36 +1,74 @@
 <!-- 新規登録 -->
-<h2><%= t('devise.registrations.new.sign_up') %></h2>
+<div class="container mx-auto max-w-md px-4 py-8 mb-20">
+  <div class="card bg-neutral shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title justify-center text-2xl mb-6">
+        <%= t('devise.registrations.new.sign_up') %>
+      </h2>
+      
+      <%= form_with model: resource, url: registration_path(resource_name), class: "space-y-4 text-lg" do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+        <!-- ユーザー名 -->
+        <div class="form-control">
+          <label class="label text-accent">
+            <span class="label-text"><%= User.human_attribute_name(:username) %></span>
+          </label>
+          <%= f.text_field :username,
+              autofocus: true,
+              autocomplete: "username",
+              placeholder: "3文字以上、半角英数字および記号 (._-~)",
+              class: "input input-bordered border-primary bg-secondary/50 w-full" %>
+        </div>
+        
+        <!-- Email -->
+        <div class="form-control">
+          <label class="label text-accent">
+            <span class="label-text"><%= User.human_attribute_name(:email) %></span>
+          </label>
+          <%= f.email_field :email, 
+              autocomplete: "email",
+              placeholder: "example@email.com",
+              class: "input input-bordered border-primary bg-secondary/50 w-full" %>
+        </div>
 
-  <div class="field">
-    <%= f.label :username, "ユーザー名（半角英数字および記号(._-~)）" %><br />
-    <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
+        <!-- パスワード -->
+        <div class="form-control">
+          <label class="label text-accent">
+            <span class="label-text"><%= User.human_attribute_name(:password) %></span>
+            <span class="label-text-alt text-accent/70">
+              6文字以上
+            </span>
+          </label>
+          <%= f.password_field :password, 
+              autocomplete: "new-password",
+              placeholder: "6文字以上",
+              class: "input input-bordered border-primary bg-secondary/50 w-full" %>
+        </div>
+
+        <!-- パスワード確認 -->
+        <div class="form-control">
+          <label class="label text-accent">
+            <span class="label-text"><%= User.human_attribute_name(:password_confirmation) %></span>
+          </label>
+          <%= f.password_field :password_confirmation, 
+              autocomplete: "new-password",
+              placeholder: "もう一度入力",
+              class: "input input-bordered border-primary bg-secondary/50 w-full" %>
+        </div>
+
+        <!-- 送信ボタン -->
+        <div class="form-control mt-6">
+          <%= f.submit t('devise.registrations.new.sign_up'), 
+              class: "btn btn-primary text-neutral w-full hover:btn-accent" %>
+        </div>
+
+        <!-- リンク -->
+        <div class="divider">または</div>
+        <div class="link text-center text-primary hover:text-accent">
+          <%= render "devise/shared/links" %>
+        </div>
+      <% end %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: false, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit t('devise.registrations.new.submit') %>
-  </div>
-<% end %>
-<%# 登録 %>
-
-<%= render "devise/shared/links" %>
+</div>
