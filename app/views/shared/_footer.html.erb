@@ -9,15 +9,17 @@
     <span class="dock-label">検索</span>
   </button>
   
-  <button>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-plus">
-      <circle cx="12" cy="12" r="10"/>
-      <path d="M8 12h8"/>
-      <path d="M12 8v8"/>
-    </svg>
-    <span class="dock-label">新規投稿</span>
-  </button>
-  
+  <%= link_to new_post_path, class: "dock-label" do %>
+    <div class="dock-label flex flex-col items-center justify-center">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-plus">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M8 12h8"/>
+        <path d="M12 8v8"/>
+      </svg>
+      <%= t('.sign_up') %>
+    </div>
+  <% end %>
+
   <button>
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round">
       <circle cx="12" cy="8" r="5"/>
