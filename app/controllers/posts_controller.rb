@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :index ]
+  skip_before_action :authenticate_user!, only: [ :index, :show ]
   before_action :set_user_post, only: [ :edit, :update, :destroy ]
   # 自分の投稿かをチェック
 

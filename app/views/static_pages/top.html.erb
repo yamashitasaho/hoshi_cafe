@@ -1,5 +1,12 @@
-<div class="top-wrapper">
-  <div class="top-inner-text">
-    <h1>RUNTEQ BOARD APP</h1>
-  </div>
+<div class="flex flex-col items-center text-center p-6">
+  <h1 class="text-6xl sm:text-7xl lg:text-8xl font-bold text-accent pt-10">hoshi cafe</h1>
+  <p class="text-xl pt-6">もう、映えだけで選ばない<br>
+                          本音で探す素敵なカフェ
+  </p>
+  <div class="pt-8 flex justify-between space-x-10 items-center">
+  <%= link_to "カフェを探す", posts_path,
+      class: "btn btn-primary btn-base sm:btn-lg text-neutral" %>
+  <%= link_to "ログインする", new_user_session_path,
+      class: "btn btn-primary btn-base sm:btn-lg text-neutral" %>
+</div>
 </div>
