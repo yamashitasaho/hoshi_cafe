@@ -40,5 +40,8 @@
 /node_modules
 
 .DS_Store
-/vendor/bundle*.dump
-# dbのバックアップを
+/vendor/bundle
+
+*.dump
+
+# dbのバックアップ
