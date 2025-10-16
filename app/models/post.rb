@@ -5,4 +5,5 @@ class Post < ApplicationRecord
   validates :body, length: { maximum: 500 }
 
   belongs_to :user
+  belongs_to :shop, optional: true   # shop_idは任意
 end
