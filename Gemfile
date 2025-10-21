@@ -63,3 +63,7 @@ gem "tailwindcss-rails", "~> 4.3"
 gem "devise", "~> 4.9"
 gem "devise-i18n"
 gem "rails-i18n"
+gem 'dotenv-rails', groups: [:development, :test]
+# APIキーを隠す
+gem 'httparty'
+# 外部APIを呼ぶため
