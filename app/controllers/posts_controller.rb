@@ -13,6 +13,8 @@ class PostsController < ApplicationController
   # デフォルトで3点を設定
 
   def create
+    setup_shop
+
     @post = current_user.posts.build(post_params)
     if @post.save
       redirect_to posts_path, notice: t("defaults.flash_message.created", item: Post.model_name.human), status: :see_other
@@ -32,6 +34,7 @@ class PostsController < ApplicationController
   end
 
   def update
+    setup_shop
     # @postは set_user_post で既にセット済み
     if @post.update(post_params)
       redirect_to post_path(@post), notice: t("defaults.flash_message.updated", item: Post.model_name.human), status: :see_other
@@ -50,11 +53,25 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:region, :shop_name, :rating, :body)
+    params.require(:post).permit(:region, :shop_name, :rating, :body, :shop_id)
   end
 
   def set_user_post
     @post = current_user.posts.find_by(id: params[:id])
     redirect_to posts_path, alert: t("defaults.errors.unauthorized_access") unless @post
+  end
+
+  def setup_shop
+    return unless params[:post][:place_id].present?
+
+    shop = Shop.find_or_create_by(place_id: params[:post][:place_id]) do |s|
+      s.name = params[:post][:shop_name]
+      s.address = params[:post][:address]
+      s.google_map_url = params[:post][:google_map_url]
+      s.phone_number = params[:post][:phone_number]
+      s.business_hours = params[:post][:business_hours]
+    end
+
+    params[:post][:shop_id] = shop.id
   end
 end

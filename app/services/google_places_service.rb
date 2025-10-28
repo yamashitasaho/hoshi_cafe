@@ -2,8 +2,9 @@ class GooglePlacesService
     include HTTParty
     base_uri 'https://places.googleapis.com/v1'
 
-    def initialize
+    def initialize # GooglePlacesService.newで呼び出し
         @api_key = ENV['GOOGLE_MAPS_API_KEY']
+        Rails.logger.info "Step 2: API Key - #{@api_key.present? ? 'Present' : 'Missing'}"
     end
 
     # Text Search（新版）で店舗を検索
