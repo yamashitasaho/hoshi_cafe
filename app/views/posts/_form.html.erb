@@ -12,12 +12,29 @@
       </div>
 
       <!-- 店名 -->
-      <div class="form-control mb-4">
+      <div class="form-control mb-4 ">
         <%= f.label :shop_name, class: "label-accent" do%>
           <%= f.object.class.human_attribute_name(:shop_name) %><span>*</span>
         <% end %>
-        <%= f.text_field :shop_name, class: "input bg-neutral w-full", placeholder: "例: スターバックス渋谷店" %>
+        <div class= "flex justify-between space-x-2">
+          <%= f.text_field :shop_name, class: "input bg-neutral w-full", placeholder: "例: スターバックス渋谷店" %>
+      
+      <!-- 店舗詳細検索ボタン -->
+          <button type="button" id="search_shop_btn" class="btn btn-primary text-neutral">
+          店舗詳細
+          </button>
+        </div>
       </div>
+      
+      <!-- 検索結果の表示エリア -->
+      <div id="shop_result" class="mt-4"></div>
+
+      <!-- 隠しフィールド：店舗詳細情報 -->
+      <%= f.hidden_field :place_id, id: "post-place-id", value: @post.shop&.place_id %>
+      <%= f.hidden_field :address, id: "post-address", value: @post.shop&.address %>
+      <%= f.hidden_field :google_map_url, id: "post-map-url", value: @post.shop&.google_map_url %>
+      <%= f.hidden_field :phone_number, id: "post-phone", value: @post.shop&.phone_number %>
+      <%= f.hidden_field :business_hours, id: "post-hours", value: @post.shop&.business_hours %>
 
       <!-- 評価 -->
       <div class="form-control mb-4">
