@@ -26,8 +26,13 @@
         </div>
       </div>
       
-      <!-- 検索結果の表示エリア -->
+      <!-- 検索結果の表示エリア JavaScriptで新規検索結果を表示する場所-->
       <div id="shop_result" class="mt-4"></div>
+
+      <!-- 既に店舗情報が保存されている場合は表示 -->
+      <div id="existing_shop_info">
+      <%= render 'shared/shop_info', shop: @post.shop, title: @post.shop_name + 'の店舗情報' %>
+      </div>
 
       <!-- 隠しフィールド：店舗詳細情報 -->
       <%= f.hidden_field :place_id, id: "post-place-id", value: @post.shop&.place_id %>
@@ -35,6 +40,9 @@
       <%= f.hidden_field :google_map_url, id: "post-map-url", value: @post.shop&.google_map_url %>
       <%= f.hidden_field :phone_number, id: "post-phone", value: @post.shop&.phone_number %>
       <%= f.hidden_field :business_hours, id: "post-hours", value: @post.shop&.business_hours %>
+      <%# JavaScriptで検索して店舗を選ぶと、この隠しフィールドに値がセットされる
+          フォーム送信時に、この隠しフィールドの値が一緒に送られてサーバーに保存される %>
+
 
       <!-- 評価 -->
       <div class="form-control mb-4">
