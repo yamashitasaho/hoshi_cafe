@@ -11,6 +11,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const region = regionInput.value.trim(); // 前後の空白を削除
         const shopName = shopNameInput.value.trim();
 
+        // 編集前の店舗情報を非表示に
+        const existingShopInfo = document.getElementById('existing_shop_info');
+        if (existingShopInfo) {
+        existingShopInfo.style.display = 'none';
+        }
+
         //地域も店名も入力されているか
         if (!region || !shopName) {
             resultDiv.innerHTML = `<div class="alert alert-error"><span>都道府県と店舗名の両方を入力してください。</span></div>`;
@@ -59,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         places.forEach((place) => {
             html += `
-            <div class="card bg-base-300 hover:bg-accent/10 cursor-pointer transition-all border border-base-content/10" data-place='${JSON.stringify(place)}'>
+            <div class="card bg-primary/20 hover:bg-secondary cursor-pointer transition-all border border-base-content/10" data-place='${JSON.stringify(place)}'>
               <div class="card-body p-3">
                 <h5 class="font-bold text-sm">${place.name}</h5>
                 <p class="text-xs text-base-content/70">${place.address || '住所情報なし'}</p>
@@ -94,12 +100,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         // 表示用HTML
         let html = `
-      <div class="bg-accent/10 border border-accent/20 p-4 rounded-lg">
-        <h4 class="font-bold text-accent mb-3 flex items-center">
+      <div class="bg-accent/10 border border-accent/30 p-4 rounded-lg">
+        <h4 class="font-bold mb-3 flex items-center">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          店舗情報を取得しました
+          ${place.name}の店舗情報を取得しました
         </h4>
         <div class="space-y-2 text-sm">
           <p class="flex items-start">
@@ -107,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <span>${place.address || '住所情報なし'}</span>
           </p>
     `;
-
+    // 電話番号
     if (place.phone_number) {
       html += `
         <p class="flex items-start">
@@ -116,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </p>
       `;
     }
-
+    // 営業時間
     if (place.business_hours && place.business_hours.length > 0) {
       html += `
         <div class="flex items-start">
@@ -125,15 +131,13 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       `;
     }
-
+    //Googleマップ
     if (place.google_map_url) {
-      html += `<a href="${place.google_map_url}" target="_blank" class="btn btn-sm btn-primary mt-2">Google Mapsで見る</a>`;
+      html += `<a href="${place.google_map_url}" target="_blank" class="btn btn-sm btn-primary text-neutral mt-2">Google Mapsで見る</a>`;
     }
 
     html += '</div></div>';
     resultDiv.innerHTML = html;
 
-    // 評価部分にスクロール
-    document.getElementById('rating_1').scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 });

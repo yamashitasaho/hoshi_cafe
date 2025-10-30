@@ -62,13 +62,15 @@
         <% end %>
       </div>
 
+      <!-- 店舗詳細情報の表示エリア -->
+      <%= render 'shared/shop_info', shop: @post.shop, title: @post.shop.name + 'の店舗情報' %>
+
       <!-- 本文 -->
-      <div class=" text-base break-words leading-relaxed" style="white-space: pre-line;">
+      <div class="text-base break-words leading-normal" style="white-space: pre-line; margin-top: -20px;">
         <%= @post.body.strip %>
       </div>
 
       <!-- 他の人の投稿はブックマークアイコン -->
-      <!-- 自分の投稿は編集アイコン、削除アイコン -->
     </div>
   </div>
 </div>

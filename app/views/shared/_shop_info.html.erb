@@ -1,0 +1,41 @@
+<!-- 店舗詳細を表示する -->
+<% if shop.present? %>
+  <div class="bg-accent/10 border border-accent/30 p-3 rounded-lg mt-2">
+    <h4 class="font-bold mb-3 flex items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <%= title %>
+    </h4>
+    <div class="space-y-2 text-sm">
+      <p class="flex items-start">
+        <span class="font-semibold mr-2">📍</span>
+        <span><%= shop.address %></span>
+      </p>
+
+      <% if shop.phone_number.present? %>
+        <p class="flex items-start">
+          <span class="font-semibold mr-2">📞</span>
+          <span><%= shop.phone_number %></span>
+        </p>
+      <% end %>
+
+      <% if shop.business_hours.present? %>
+        <div class="flex items-start">
+          <span class="font-semibold mr-2">🕒</span>
+          <div class="flex-1">
+            <% shop.business_hours.split("\n").each do |hours| %>
+              <div><%= hours %></div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if shop.google_map_url.present? %>
+        <a href="<%= shop.google_map_url %>" target="_blank" class="btn btn-sm btn-primary text-neutral mt-2">
+          Google Mapsで見る
+        </a>
+      <% end %>
+    </div>
+  </div>
+<% end %>
