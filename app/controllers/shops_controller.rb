@@ -35,7 +35,9 @@ class ShopsController < ApplicationController
             }
         end
 
-        render json: { places: results, found: true }
+        render json: { places: results, found: true },
+               headers: { 'Cache-Control' => 'no-cache, no-store, must-revalidate' }
+               # キャッシュを無効化することで新しいデータが取得される
     else
         # 検索結果が見つからなかった場合
         render json: {places: [], found: false, search_query: query }

@@ -30,9 +30,11 @@
       <div id="shop_result" class="mt-4"></div>
 
       <!-- 既に店舗情報が保存されている場合は表示 -->
-      <div id="existing_shop_info">
-      <%= render 'shared/shop_info', shop: @post.shop, title: @post.shop_name + 'の店舗情報' %>
-      </div>
+      <% if @post.shop.present? %>
+        <div id="existing_shop_info">
+          <%= render 'shared/shop_info', shop: @post.shop, title: @post.shop_name + 'の店舗情報' %>
+        </div>
+      <% end %>
 
       <!-- 隠しフィールド：店舗詳細情報 -->
       <%= f.hidden_field :place_id, id: "post-place-id", value: @post.shop&.place_id %>

@@ -1,5 +1,7 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // ページが完全に読み込まれてから実行
+console.log('shop_search.js loaded');  // この行をshop_search.jsに追加
+document.addEventListener("turbo:load", () => {
+    // 最初のページ読み込み時と、Turbo Driveによる画面遷移のたびに発火
+    // DOMContentLoaded ではなく、turbo:load を使う
     const regionInput = document.getElementById("post_region");
     const shopNameInput = document.getElementById("post_shop_name");
     const button = document.getElementById("search_shop_btn");
@@ -19,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         //地域も店名も入力されているか
         if (!region || !shopName) {
-            resultDiv.innerHTML = `<div class="alert alert-error"><span>都道府県と店舗名の両方を入力してください。</span></div>`;
+            resultDiv.innerHTML = `<div class="alert bg-error/50 text-neutral"><span>都道府県と店舗名の両方を入力してください。</span></div>`;
             return;
         }
 
@@ -30,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
         resultDiv.innerHTML = `<div class="flex items-center gap-2"><span class="loading loading-spinner loading-md"></span> 検索中...</div>`;
 
         try {
-            const response = await fetch(`/shops/search_place?query=${encodeURIComponent(query)}`);
+            const response = await fetch(`/shops/search_place?query=${encodeURIComponent(query)}&t=${Date.now()}`);
             // ↑ GET /shops/search_place?query=京都%20スターバックス京都駅店
             const data = await response.json();
             // ↑ レスポンスをJSONに変換
@@ -38,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (data.error) {
                 //APIエラー
-                resultDiv.innerHTML = `<div class="alert alert-error"><span>${data.error}</span></div>`;
+                resultDiv.innerHTML = `<div class="alert bg-error/50 text-neutral"><span>${data.error}</span></div>`;
                 return;
             }
 
@@ -55,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         } catch (err) {
             console.error (err); // コンソールにエラーを出力（開発者用）
-            resultDiv.innerHTML = `<div class="alert alert-error"><span>検索中にエラーが発生しました。</span></div>`;
+            resultDiv.innerHTML = `<div class="alert bg-error/50 text-neutral"><span>検索中にエラーが発生しました。</span></div>`;
         }
       });
 
