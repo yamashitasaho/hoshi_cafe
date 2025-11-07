@@ -53,8 +53,9 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:region, :shop_name, :rating, :body, :shop_id)
+    params.require(:post).permit(:region, :shop_name, :rating, :body, :shop_id, :image)
   end
+  # :imageを追加(画像)
 
   def set_user_post
     @post = current_user.posts.find_by(id: params[:id])

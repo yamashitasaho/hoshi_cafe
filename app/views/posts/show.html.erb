@@ -51,8 +51,15 @@
           <span class="font-medium text-lg"><%= @post.shop_name %></span>
         </div>
       </div>
+
       <!-- 画像エリア -->
-      <div class="bg-gray-200 aspect-square w-full rounded mb-2"></div>
+      <div class="bg-gray-200 w-full rounded overflow-hidden mb-2">
+        <% if @post.image.attached? %>
+          <%= image_tag(@post.image, alt: "#{@post.shop_name}の画像", class: "w-full h-auto object-cover") %>
+        <% else %>
+          <%= image_tag("coffee.jpg", alt: "デフォルト画像", class: "w-full h-auto object-cover") %>
+        <% end %>
+      </div>
       
       <!-- 評価 -->
       <div class="rating rating-sm">
@@ -63,7 +70,9 @@
       </div>
 
       <!-- 店舗詳細情報の表示エリア -->
-      <%= render 'shared/shop_info', shop: @post.shop, title: @post.shop.name + 'の店舗情報' %>
+      <% if @post.shop %>
+        <%= render 'shared/shop_info', shop: @post.shop, title: @post.shop.name + 'の店舗情報' %>
+      <% end %>
 
       <!-- 本文 -->
       <div class="text-base break-words leading-normal" style="white-space: pre-line; margin-top: -20px;">
