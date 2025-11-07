@@ -6,4 +6,5 @@ class Post < ApplicationRecord
 
   belongs_to :user
   belongs_to :shop, optional: true   # shop_idは任意
+  has_one_attached :image # 画像投稿
 end

@@ -1,4 +1,5 @@
-<%# 入力フォーム %>
+<!-- 入力フォーム -->
+<%# local: true ← Turbo Drive で送信しない（通常の form 送信）%>
 <%= form_with model: @post, local: true do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <fieldset class="fieldset bg-secondary text-base p-4 pb-20">
@@ -56,6 +57,13 @@
                 id: "rating_#{index + 1}" %>
             <% end %>
            </div>
+      </div>
+
+      <!-- 画像 -->
+      <div class="form-control mb-4">
+        <legend class="fieldset-legend font-normal">画像</legend>
+          <%= f.file_field :image, class: "file-input file-input-primary file:text-neutral bg-neutral w-full" %>
+            <label class="label">JPG、PNG、GIF形式の画像をアップロードしてください</label>
       </div>
 
       <!-- レビュー -->
