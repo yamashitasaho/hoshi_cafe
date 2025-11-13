@@ -2,14 +2,14 @@
 <%# local: true ← Turbo Drive で送信しない（通常の form 送信）%>
 <%= form_with model: @post, local: true do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <fieldset class="fieldset bg-secondary text-base p-4 pb-20">
+    <div class="bg-secondary text-base p-4 pb-20 w-full">
 
       <!-- 都道府県 -->
       <div class="form-control mb-4">
         <%= f.label :region, class: "label-accent" do%>
           <%= f.object.class.human_attribute_name(:region) %><span>*</span>
         <% end %>
-        <%= f.text_field :region, class: "input bg-neutral w-full", placeholder: "例: 東京都" %>
+        <%= f.text_field :region, class: "input input-primary bg-neutral w-full", placeholder: "例: 東京都" %>
       </div>
 
       <!-- 店名 -->
@@ -17,8 +17,8 @@
         <%= f.label :shop_name, class: "label-accent" do%>
           <%= f.object.class.human_attribute_name(:shop_name) %><span>*</span>
         <% end %>
-        <div class= "flex justify-between space-x-2">
-          <%= f.text_field :shop_name, class: "input bg-neutral w-full", placeholder: "例: スターバックス渋谷店" %>
+        <div class= "flex flex-col space-y-2">
+          <%= f.text_field :shop_name, class: "input input-primary bg-neutral w-full", placeholder: "例: スターバックス渋谷店" %>
       
       <!-- 店舗詳細検索ボタン -->
           <button type="button" id="search_shop_btn" class="btn btn-primary text-neutral">
@@ -62,19 +62,22 @@
       <!-- 画像 -->
       <div class="form-control mb-4">
         <legend class="fieldset-legend font-normal">画像</legend>
-          <%= f.file_field :image, class: "file-input file-input-primary file:text-neutral bg-neutral w-full" %>
-            <label class="label">JPG、PNG、GIF形式の画像をアップロードしてください</label>
+          <%= f.file_field :image, class: "file-input file-input-primary file:text-neutral bg-neutral w-full",
+                                   accept: Post::ACCEPTED_CONTENT_TYPES.join(',') %>
+            <label class="label">
+              <span class="text-xs md:text-sm">JPEG、PNG、GIF、WebP、HEIC形式（10MB以下）の画像</span>
+            </label>
       </div>
 
       <!-- レビュー -->
       <div class="form-control mb-4">
         <%= f.label :body, class: "label-accent" %>
-        <%= f.text_area :body, class: "textarea textarea-bordered bg-neutral w-full", rows: "4", placeholder: "カフェの感想を書いてください..." %>
+        <%= f.text_area :body, class: "textarea textarea-primary bg-neutral w-full", rows: "4", placeholder: "カフェの感想を書いてください..." %>
       </div>
 
       <!-- 投稿ボタン -->
       <div class="form-control mt-6">
         <%= f.submit t('.submit'), class: "btn btn-primary text-neutral w-full" %>
       </div>
-  </fieldset>
+    </div>
 <% end %>
