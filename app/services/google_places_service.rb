@@ -1,9 +1,9 @@
 class GooglePlacesService
     include HTTParty
-    base_uri 'https://places.googleapis.com/v1'
+    base_uri "https://places.googleapis.com/v1"
 
     def initialize # GooglePlacesService.newで呼び出し
-        @api_key = ENV['GOOGLE_MAPS_API_KEY']
+        @api_key = ENV["GOOGLE_MAPS_API_KEY"]
         Rails.logger.info "Step 2: API Key - #{@api_key.present? ? 'Present' : 'Missing'}"
     end
 
@@ -11,12 +11,12 @@ class GooglePlacesService
     def search_text(query)
         # ↓ エンドポイント（どこに送るか）
         response = self.class.post(
-        '/places:searchText',
+        "/places:searchText",
         # ↓ ヘッダー（送り方の情報）
         headers: headers,
         # ↓ ボディ（実際に送るデータ）
         body: { textQuery: query,
-                languageCode: 'ja'}.to_json
+                languageCode: "ja" }.to_json
         )
 
         handle_response(response)
@@ -28,16 +28,16 @@ class GooglePlacesService
 
     def headers
         {
-          'Content-Type' => 'application/json',
-          'X-Goog-Api-Key' => @api_key,
-          'X-Goog-FieldMask' => 'places.id,places.displayName,places.formattedAddress,places.googleMapsUri,places.regularOpeningHours.weekdayDescriptions,places.internationalPhoneNumber'
+          "Content-Type" => "application/json",
+          "X-Goog-Api-Key" => @api_key,
+          "X-Goog-FieldMask" => "places.id,places.displayName,places.formattedAddress,places.googleMapsUri,places.regularOpeningHours.weekdayDescriptions,places.internationalPhoneNumber"
         }
     end
 
     def handle_response(response)
         if response.success?
             JSON.parse(response.body)
-            # JSONをRubyのハッシュに変換 {"places"=>[{"id"=>"ChIJ...", "displayName"=>"スターバックス"}]}に変換
+        # JSONをRubyのハッシュに変換 {"places"=>[{"id"=>"ChIJ...", "displayName"=>"スターバックス"}]}に変換
         else
           { error: "API Error: #{response.code}" }
         end

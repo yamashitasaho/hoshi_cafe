@@ -16,12 +16,22 @@ class PostsController < ApplicationController
     setup_shop
 
     @post = current_user.posts.build(post_params)
-    if @post.save
-      redirect_to posts_path, notice: t("defaults.flash_message.created", item: Post.model_name.human), status: :see_other
-    else
-      flash.now[:alert] = t("defaults.flash_message.not_created", item: Post.model_name.human)
-      render :new, status: :unprocessable_entity
-      # エラーで422が返される
+    # Post オブジェクトを作成、DBには保存しない
+
+    begin
+      # 画像を処理して更新
+      @post.image = @post.process_and_transform_image(params[:post][:image], 854) if params[:post][:image].present?
+
+      if @post.save
+        redirect_to posts_path, notice: t("defaults.flash_message.created", item: Post.model_name.human), status: :see_other
+      else
+        flash.now[:alert] = t("defaults.flash_message.not_created", item: Post.model_name.human)
+        render :new, status: :unprocessable_entity
+        # エラーで422が返される
+      end
+    rescue ImageProcessable::ImageProcessingError => e
+      flash.now[:alert] = e.message
+      render :new
     end
   end
 
