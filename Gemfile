@@ -70,3 +70,5 @@ gem "dotenv-rails", groups: [ :development, :test ]
 # APIキーを隠す
 gem "httparty"
 # 外部APIを呼ぶため
+gem "aws-sdk-s3", require: false
+#必要な時だけS3 と通信するライブラリを使う
