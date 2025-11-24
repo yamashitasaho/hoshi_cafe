@@ -9,6 +9,7 @@ class User < ApplicationRecord
             message: :username_format }, # 文字種制限
             length: { minimum: 3, maximum: 20 } # 文字数制限
   has_many :posts, dependent: :destroy
+  has_one_attached :profile_image # プロフィール画像
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

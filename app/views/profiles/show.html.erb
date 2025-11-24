@@ -1,0 +1,63 @@
+<div class="container mx-auto px-4 py-6 pb-20">
+  <h1 class="text-2xl font-bold mb-6"><%= t('.title') %></h1>
+<!-- 自分のプロフィール -->
+  <!-- ⭐ 左右２カラムにする親 -->
+  <div class="flex gap-10">
+    <!--　アバターとユーザー名 -->
+    <div class="flex flex-col items-start">
+      <!-- アバター -->
+      <div class="sm:mt-1">
+        <div class="w-20 h-20 rounded-full bg-neutral text-primary flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" 
+               viewBox="0 0 24 24" 
+               fill="none" 
+               stroke="currentColor" 
+               stroke-width="2" 
+               stroke-linecap="round" 
+               stroke-linejoin="round"
+               width="70"
+               height="70"
+               class="lucide lucide-circle-user-round-icon lucide-circle-user-round">
+          <path d="M18 20a6 6 0 0 0-12 0"/>
+          <circle cx="12" cy="10" r="4"/><circle cx="12" cy="12" r="10"/>
+          </svg>
+        </div>
+      </div>
+      <!-- ユーザー名と編集 -->
+      <div class= "flex items-center gap-1">
+        <span class="font-semibold text-lg"><%= @user.username %></span>
+        <!-- 自分のマイページなら編集できる -->
+        <% if user_signed_in? %>
+          <%= link_to edit_profile_path do %>
+               <svg xmlns="http://www.w3.org/2000/svg" 
+                    width="20" 
+                    height="20" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    stroke-width="2" 
+                    stroke-linecap="round" 
+                    stroke-linejoin="round" 
+                    class="lucide lucide-pencil-icon lucide-pencil">
+                  <path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/>
+                  <path d="m15 5 4 4"/>
+                </svg>
+          <% end %>
+        <% end %>
+      </div>
+
+      <!-- 居住地 -->
+      <div class= "flex items-center gap-1">
+          <span class="font-medium text-sm">居住地：<%= @user.region.presence || "未設定" %></span>
+      </div>
+    </div>
+
+    <!-- 右カラム：自己紹介 -->
+  <div class="flex-1">
+    <h2 class="font-semibold mb-2">自己紹介</h2>
+    <p class="text-sm">
+      <%= @user.introduction.presence || "自己紹介がまだありません" %>
+    </p>
+  </div>
+
+</div>

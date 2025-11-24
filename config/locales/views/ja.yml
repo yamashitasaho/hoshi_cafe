@@ -9,6 +9,10 @@ ja:
     form:
       submit: "投稿する"
 
+  profiles:
+    show:
+      title: "マイページ"
+
   shared:
     header:
       sign_up: "新規登録"
