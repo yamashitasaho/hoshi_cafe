@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  # 指定されたコントローラーのアクションが実行される前に、ユーザーがログインしているか
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
