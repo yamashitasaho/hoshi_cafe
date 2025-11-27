@@ -1,4 +1,52 @@
-<div>
-  <h1 class="font-bold text-4xl">Profiles#edit</h1>
-  <p>Find me in app/views/profiles/edit.html.erb</p>
+<!-- プロフィール編集 -->
+<div class="container mx-auto px-4 py-6">
+  <h1 class="text-2xl font-bold mb-6"><%= t('.title') %></h1>
+
+  <!-- 入力フォーム -->
+<%# local: true ← Turbo Drive で送信しない（通常の form 送信）%>
+<%# 更新処理をしたいから profile_path %>
+<%= form_with model: @user, url: profile_path, local: true do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+    <div class="bg-secondary text-base p-4 pb-20 w-full">
+
+      <!-- 名前 -->
+      <div class="form-control mb-4">
+        <%= f.label :nickname, class: "label-accent" do%>
+          <%= f.object.class.human_attribute_name(:nickname) %>
+        <% end %>
+        <%= f.text_field :nickname, class: "input input-primary bg-neutral w-full" %>
+      </div>
+
+      <!-- 居住地 -->
+      <div class="form-control mb-4">
+        <%= f.label :region, class: "label-accent" do%>
+          <%= f.object.class.human_attribute_name(:region) %>
+        <% end %>
+        <%= f.text_field :region, class: "input input-primary bg-neutral w-full", placeholder: "例: 東京都" %>
+      </div>
+
+      <!-- 画像 -->
+      <div class="form-control mb-4">
+        <legend class="fieldset-legend font-normal">プロフィール画像</legend>
+          <%= f.file_field :profile_image, class: "file-input file-input-primary file:text-neutral bg-neutral w-full",
+                                   accept: Post::ACCEPTED_CONTENT_TYPES.join(',') %>
+            <label class="label">
+              <span class="text-xs md:text-sm">JPEG、PNG、GIF、WebP、HEIC形式（10MB以下）の画像</span>
+            </label>
+      </div>
+
+      <!-- 自己紹介 -->
+      <div class="form-control mb-4">
+        <%= f.label :introduction, class: "label-accent" %>
+        <%= f.text_area :introduction, class: "textarea textarea-primary bg-neutral w-full", rows: "4" %>
+      </div>
+
+      <!-- 投稿ボタン -->
+      <div class="form-control mt-6">
+        <%= f.submit t('.submit'), class: "btn btn-primary text-neutral w-full" %>
+      </div>
+    </div>
+<% end %>
+
+
 </div>
