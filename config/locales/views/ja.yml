@@ -12,6 +12,9 @@ ja:
   profiles:
     show:
       title: "マイページ"
+    edit:
+      title: "プロフィール編集"
+      submit: "更新する"
 
   shared:
     header:

@@ -36,7 +36,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.includes(:user).find(params[:id])
   end
 
   def edit
@@ -46,11 +46,22 @@ class PostsController < ApplicationController
   def update
     setup_shop
     # @postは set_user_post で既にセット済み
-    if @post.update(post_params)
-      redirect_to post_path(@post), notice: t("defaults.flash_message.updated", item: Post.model_name.human), status: :see_other
-    else
-      flash.now[:alert] = t("defaults.flash_message.not_updated", item: Post.model_name.human)
-      render :edit, status: :unprocessable_entity
+
+
+    # 画像を処理して更新
+    begin
+      @post.image = @post.process_and_transform_image(params[:post][:image], 854) if params[:post][:image].present?
+
+      if @post.update(post_params)
+        redirect_to post_path(@post), notice: t("defaults.flash_message.updated", item: Post.model_name.human), status: :see_other
+      else
+        flash.now[:alert] = t("defaults.flash_message.not_updated", item: Post.model_name.human)
+        render :edit, status: :unprocessable_entity
+      end
+
+    rescue ImageProcessable::ImageProcessingError => e
+      flash.now[:alert] = e.message
+      render :edit
     end
   end
 
@@ -63,7 +74,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:region, :shop_name, :rating, :body, :shop_id, :image)
+    params.require(:post).permit(:region, :shop_name, :rating, :body, :shop_id)
   end
   # :imageを追加(画像)
 

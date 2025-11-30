@@ -8,6 +8,9 @@ ja:
         username: "ユーザー名"
         email: "メールアドレス"
         password: "パスワード"
+        nickname: "名前"
+        region: "居住地"
+        introduction: "自己紹介"
       post:
         region: "都道府県"
         shop_name: "店名"
