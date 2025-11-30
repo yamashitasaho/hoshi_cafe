@@ -20,7 +20,7 @@ class PostsController < ApplicationController
 
     begin
       # 画像を処理して更新
-      @post.image = @post.process_and_transform_image(params[:post][:image], 854) if params[:post][:image].present?
+      @post.image = @post.process_and_transform_image(params[:post][:image], 1200) if params[:post][:image].present?
 
       if @post.save
         redirect_to posts_path, notice: t("defaults.flash_message.created", item: Post.model_name.human), status: :see_other
@@ -50,7 +50,7 @@ class PostsController < ApplicationController
 
     # 画像を処理して更新
     begin
-      @post.image = @post.process_and_transform_image(params[:post][:image], 854) if params[:post][:image].present?
+      @post.image = @post.process_and_transform_image(params[:post][:image], 1200) if params[:post][:image].present?
 
       if @post.update(post_params)
         redirect_to post_path(@post), notice: t("defaults.flash_message.updated", item: Post.model_name.human), status: :see_other
