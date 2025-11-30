@@ -17,7 +17,7 @@ module ImageProcessable
           .resize_to_fit(width, nil) # サイズ調整
           .convert("webp")  # 形式変換
           .saver(strip: true, # メタデータ削除でプライバシー保護
-                quality: 85 # 画質
+                quality: 90 # 画質
                 )
           .call # 実行
 
