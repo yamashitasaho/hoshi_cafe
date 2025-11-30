@@ -70,9 +70,9 @@
       </div>
 
       <!-- 画像エリア -->
-      <div class="bg-gray-200 w-full rounded overflow-hidden mb-2">
+      <div class="flex justify-center w-full rounded overflow-hidden mb-2">
         <% if @post.image.attached? %>
-          <%= image_tag(@post.image, alt: "#{@post.shop_name}の画像", class: "w-full h-auto object-cover") %>
+          <%= image_tag(@post.image, alt: "#{@post.shop_name}の画像", class: "max-w-full h-auto object-cover") %>
         <% else %>
           <%= image_tag("coffee.jpg", alt: "デフォルト画像", class: "w-full h-auto object-cover") %>
         <% end %>
