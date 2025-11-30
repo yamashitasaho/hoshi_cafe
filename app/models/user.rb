@@ -10,7 +10,7 @@ class User < ApplicationRecord
             message: :username_format }, # 文字種制限
             length: { minimum: 3, maximum: 20 } # 文字数制限
 
-  validates :nickname, uniqueness: true
+  # validates :nickname, uniqueness: true ニックネームは重複しても良い
   validates :region, length: { maximum: 5 }
   validates :introduction, length: { maximum: 150 }
 

@@ -28,7 +28,7 @@
         </div>
       </div>
       <!-- ユーザー名と編集 -->
-      <div class= "flex items-center gap-1">
+      <div class= "flex items-center gap-1 mt-2">
         <span class="font-semibold text-xl"><%= @user.nickname.presence || @user.username %></span>
         <!-- 自分のマイページなら編集できる -->
         <% if user_signed_in? %>
