@@ -44,6 +44,7 @@ class User < ApplicationRecord
   def set_nickname_if_blank
     self.nickname = username if nickname.blank?
   end
+
   # マイページ編集で名前を空にしてもusernameが設置されるようにする
 
 end
