@@ -31,5 +31,6 @@ class ProfilesController < ApplicationController
 
   def profile_params
     params.require(:user).permit(:nickname, :region, :introduction)
+    # profile_imageはwebpが上書きされてしまうので含めない
   end
 end

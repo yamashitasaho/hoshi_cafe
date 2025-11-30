@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  before_save :set_nickname_if_blank
   include ImageProcessable # 画像処理
   validates :username,
             presence: true,                                    # 必須入力
@@ -34,7 +35,15 @@ class User < ApplicationRecord
   image/heif
 ].freeze
 
-validates :profile_image, content_type: ACCEPTED_CONTENT_TYPES,
+  validates :profile_image, content_type: ACCEPTED_CONTENT_TYPES,
                   size: { less_than_or_equal_to: 10.megabytes },
                   allow_blank: true
+
+  private
+
+  def set_nickname_if_blank
+    self.nickname = username if nickname.blank?
+  end
+  # マイページ編集で名前を空にしてもusernameが設置されるようにする
+
 end
