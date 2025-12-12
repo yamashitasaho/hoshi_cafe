@@ -2,7 +2,7 @@
   <h1 class="text-2xl font-bold mb-6"><%= t('.title') %></h1>
 <!-- 自分のプロフィール -->
   <!-- 左右２カラムにする親 -->
-  <div class="flex gap-10 items-start">
+  <div class="flex gap-5 items-start">
     <!--　縦に並べる -->
     <div class="flex flex-col">
       <!-- アバター -->
@@ -63,5 +63,22 @@
       <%= @user.introduction.presence || "自己紹介がまだありません" %>
     </div>
   </div>
+  </div>
+
+  <!-- 投稿一覧-->
+  <div class="tabs tabs-lift tabs-lg font-semibold mt-2">
+    <input type="radio" name="my_tabs_3" class="tab [--tab-bg:#F1D9E2] [--tab-border-color:#F1D9E2]" aria-label="投稿一覧" checked="checked" />
+    <div class="tab-content bg-secondary p-6">
+    <!-- 投稿カードグリッド -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 px-2">
+        <%= render @user.posts %>
+      </div>
+    </div>
+
+    <!-- 保存した投稿 -->
+    <input type="radio" name="my_tabs_3" class="tab [--tab-bg:#F1D9E2] [--tab-border-color:#F1D9E2]" aria-label="保存した投稿"/>
+    <div class="tab-content bg-secondary p-6">Tab content 2</div>
+  </div>
 
 </div>
+
