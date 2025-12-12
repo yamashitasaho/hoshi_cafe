@@ -20,5 +20,5 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   # プロフィール
-  resource :profile, only: %i[show edit update]
+  resources :profiles, only: %i[show edit update]
 end
