@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
   def show
-    @user = current_user
+    @user = User.includes(:posts).find(params[:id])
+    # 他の人のプロフィールも見れるようにする
   end
 
   def edit

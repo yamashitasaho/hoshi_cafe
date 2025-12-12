@@ -1,8 +1,7 @@
 <div class="container mx-auto px-4 py-6 pb-20">
-  <h1 class="text-2xl font-bold mb-6"><%= t('.title') %></h1>
 <!-- 自分のプロフィール -->
   <!-- 左右２カラムにする親 -->
-  <div class="flex gap-5 items-start">
+  <div class="flex gap-5 mx-auto items-start">
     <!--　縦に並べる -->
     <div class="flex flex-col">
       <!-- アバター -->
@@ -18,9 +17,7 @@
                stroke-width="2" 
                stroke-linecap="round" 
                stroke-linejoin="round"
-               width="56"
-               height="56"
-               class="lucide lucide-circle-user-round-icon lucide-circle-user-round">
+               class="w-full h-full lucide lucide-circle-user-round-icon lucide-circle-user-round">
           <path d="M18 20a6 6 0 0 0-12 0"/>
           <circle cx="12" cy="10" r="4"/><circle cx="12" cy="12" r="10"/>
           </svg>
@@ -31,7 +28,7 @@
       <div class= "flex items-center gap-1 mt-2">
         <span class="font-semibold text-xl"><%= @user.nickname.presence || @user.username %></span>
         <!-- 自分のマイページなら編集できる -->
-        <% if user_signed_in? %>
+        <% if @user == current_user %>
           <%= link_to edit_profile_path do %>
                <svg xmlns="http://www.w3.org/2000/svg" 
                     width="20" 
@@ -76,9 +73,10 @@
     </div>
 
     <!-- 保存した投稿 -->
-    <input type="radio" name="my_tabs_3" class="tab [--tab-bg:#F1D9E2] [--tab-border-color:#F1D9E2]" aria-label="保存した投稿"/>
-    <div class="tab-content bg-secondary p-6">Tab content 2</div>
+    <% if @user == current_user %>
+      <input type="radio" name="my_tabs_3" class="tab [--tab-bg:#F1D9E2] [--tab-border-color:#F1D9E2]" aria-label="保存した投稿"/>
+      <div class="tab-content bg-secondary p-6">Tab content 2</div>
+    <% end %>
   </div>
-
 </div>
 
