@@ -11,7 +11,7 @@ ja:
 
   profiles:
     show:
-      title: "マイページ"
+      title: "プロフィール"
     edit:
       title: "プロフィール編集"
       submit: "更新する"
