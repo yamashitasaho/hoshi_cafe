@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new(rating: 3)
+    @post = Post.new(rating: 3, is_pr: false)
   end
   # デフォルトで3点を設定
 
@@ -74,7 +74,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:region, :shop_name, :rating, :body, :shop_id)
+    params.require(:post).permit(:region, :shop_name, :rating, :body, :shop_id, :is_pr)
   end
   # :imageを追加(画像)
 

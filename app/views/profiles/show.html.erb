@@ -1,5 +1,7 @@
 <div class="container mx-auto px-4 py-6 pb-20">
+    <h1 class="text-2xl font-bold mb-6"><%= t('.title') %></h1>
 <!-- 自分のプロフィール -->
+  <div class="p-4 w-full" >
   <!-- 左右２カラムにする親 -->
   <div class="flex gap-5 mx-auto items-start">
     <!--　縦に並べる -->
@@ -59,6 +61,7 @@
     <div class="text-base break-all leading-normal">
       <%= @user.introduction.presence || "自己紹介がまだありません" %>
     </div>
+  </div>
   </div>
   </div>
 

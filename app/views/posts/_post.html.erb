@@ -28,7 +28,10 @@
 
       <%= link_to truncate(post.user.username, length: 12, omission: '...'), profile_path(post.user) %>
       <span class="text-accent/70"><%= post.created_at.strftime("%Y/%m/%d") %></span>
-      <div class="badge badge-secondary text-accent badge-sm rounded-2xl ml-auto">PR</div>
+      <!-- PRバッジ -->
+      <% if post.is_pr %>
+        <span class="badge badge-secondary text-accent badge-sm rounded-2xl ml-auto">PR</span>
+      <% end %>
     </div>
     
     <!-- 地域・店名 -->

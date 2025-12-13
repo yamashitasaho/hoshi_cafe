@@ -2,8 +2,9 @@ class Post < ApplicationRecord
   include ImageProcessable # 画像処理
   validates :region, presence: true, length: { maximum: 5 }
   validates :shop_name, presence: true, length: { maximum: 28 }
-  validates :rating, presence: true, inclusion: { in: 1..5 }
+  validates :rating, inclusion: { in: 1..5 }
   validates :body, length: { maximum: 500 }
+  validates :is_pr, inclusion: { in: [true, false] }
 
   belongs_to :user
   belongs_to :shop, optional: true   # shop_idは任意

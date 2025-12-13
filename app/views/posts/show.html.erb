@@ -45,7 +45,10 @@
              <% end %>
            </div>
          <% end %>
-        <div class="badge badge-secondary text-accent badge-base rounded-2xl">PR</div>
+         <!-- PRバッジ -->
+        <% if @post.is_pr %>
+          <span class="badge badge-secondary text-accent badge-base rounded-2xl">PR</span>
+        <% end %>
       </div>
       
       <!-- 地域・店名 -->
