@@ -1,7 +1,7 @@
 # ユーザー作成（seed データだけ先に削除）
 # seed で投入された user1～user10 を削除
-User.where(id: 1..10).destroy_all
-Post.where(user_id: 1..10).destroy_all
+User.where(id: 1..13).destroy_all
+Post.where(user_id: 1..13).destroy_all
 
 =begin
 # ユーザー作成（usernameで英数のみ）
