@@ -1,5 +1,5 @@
 # ユーザー作成（seed データだけ先に削除）
-# seed で投入された user1～user10 を削除
+# seed で投入された user1～user14 を削除
 User.where(id: 1..14).destroy_all
 Post.where(user_id: 1..14).destroy_all
 
