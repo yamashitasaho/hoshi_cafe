@@ -31,7 +31,7 @@
         <div class="flex flex-col flex-1 min-w-0">
           <%= link_to profile_path(@post.user) do %>
             <span class="font-medium break-words">
-              <%= @post.user.username %>
+              <%= @post.user.nickname || @post.user.username %>
             </span>
           <% end %>
           <span class="text-accent/70 text-xs mt-1">
