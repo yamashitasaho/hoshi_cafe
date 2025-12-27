@@ -1,4 +1,6 @@
 <!-- その掲示板をお気に入りにしているか判定 -->
+<% if user_signed_in? %>
+
 <div class='ms-auto'>
   <% if current_user.favorite?(post) %>
     <%= render 'shared/unfavorite', { post: post} %>
@@ -6,3 +8,4 @@
     <%= render 'shared/favorite', { post: post} %>
   <% end %>
 </div>
+<% end %>
