@@ -39,7 +39,7 @@
       <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="currentColor" stroke-linejoin="miter" stroke-linecap="butt"><polyline points="1 11 12 2 23 11" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2"></polyline><path d="m5,13v7c0,1.105.895,2,2,2h10c1.105,0,2-.895,2-2v-7" fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></path><line x1="12" y1="22" x2="12" y2="18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></line></g></svg>
       <span class="text-sm whitespace-nowrap"><%= truncate(post.region, length:4 , omission: '') %></span>
       <span class="font-medium whitespace-nowrap overflow-hidden">
-        <%= link_to truncate(post.shop_name, length: 13, omission: '...'), post_path(post) %>
+        <%= link_to truncate(post.shop_name, length: 12, omission: '...'), post_path(post) %>
       </span>
     </div>
     
@@ -61,8 +61,7 @@
                disabled <%= 'checked' if i <= post.rating %> />
         <% end %>
       </div>
-    
-      <!-- 他の人の投稿はブックマークアイコン -->
+
       <!-- 自分の投稿は編集アイコン、削除アイコン -->
       <% if user_signed_in? && current_user.own?(post) %>
         <div class="text-primary flex gap-1">
@@ -73,6 +72,9 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-icon lucide-trash"><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
           <% end %>
         </div>
+      <% else %>
+        <!-- 他の人の投稿はブックマークアイコン -->
+          <%= render 'shared/favorite_buttons', { post: post } %>
       <% end %>
     </div>
 

@@ -75,10 +75,19 @@
       </div>
     </div>
 
-    <!-- 保存した投稿 -->
+    <!-- お気に入りした投稿 -->
     <% if @user == current_user %>
-      <input type="radio" name="my_tabs_3" class="tab [--tab-bg:#F1D9E2] [--tab-border-color:#F1D9E2]" aria-label="保存した投稿"/>
-      <div class="tab-content bg-secondary p-6">Tab content 2</div>
+      <input type="radio" name="my_tabs_3" class="tab [--tab-bg:#F1D9E2] [--tab-border-color:#F1D9E2]" aria-label="お気に入り投稿"/>
+      <div class="tab-content bg-secondary p-6">
+      <!-- お気に入りした投稿カードグリッド -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 px-2">
+          <% if @user.favorite_posts.present? %>
+            <%= render @user.favorite_posts %>
+          <% else %>
+            <p><%= t('.no_result') %></p>
+          <% end %>
+        </div>
+      </div>
     <% end %>
   </div>
 </div>

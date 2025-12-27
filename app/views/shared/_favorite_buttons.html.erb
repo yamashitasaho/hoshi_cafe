@@ -1,0 +1,8 @@
+<!-- その掲示板をお気に入りにしているか判定 -->
+<div class='ms-auto'>
+  <% if current_user.favorite?(post) %>
+    <%= render 'shared/unfavorite', { post: post} %>
+  <% else %>
+    <%= render 'shared/favorite', { post: post} %>
+  <% end %>
+</div>
