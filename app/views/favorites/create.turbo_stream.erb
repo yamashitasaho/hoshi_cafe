@@ -1,0 +1,4 @@
+<%# お気に入りを押したらunfavoriteの赤ハートにUIに置き換わる %>
+<%= turbo_stream.replace "favorite-button-for-post-#{@post.id}" do %>
+  <%= render 'shared/unfavorite', post: @post %>
+<% end %>
