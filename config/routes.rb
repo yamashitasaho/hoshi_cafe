@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
   root "static_pages#top" # TOPページ
-  resources :posts, only: %i[index new create show edit destroy update] # 投稿一覧,新規投稿,投稿詳細,編集,削除,更新
+
+  resources :posts, only: %i[index new create show edit destroy update] do # 投稿一覧,新規投稿,投稿詳細,編集,削除,更新
+    collection do # postリソース全体にアクションを追加(IDがない)
+      get :favorites # GET posts/favorites お気に入りされている投稿の一覧を出す
+    end
+  end
+
+  resources :favorites, only: %i[create destroy] # お気に入り機能
 
   # 店舗検索用エンドポイント（Ajax用）
   resources :shops, only: [] do

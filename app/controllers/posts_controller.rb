@@ -71,6 +71,11 @@ class PostsController < ApplicationController
   end
   # HTTPステータスコード 303 "See Other" を送信
 
+  def favorites
+    @posts = current_user.favorite_posts
+  end
+  # お気に入りした投稿の一覧
+
   private
 
   def post_params
@@ -96,4 +101,5 @@ class PostsController < ApplicationController
 
     params[:post][:shop_id] = shop.id
   end
+
 end

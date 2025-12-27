@@ -12,6 +12,7 @@ ja:
   profiles:
     show:
       title: "プロフィール"
+      no_result: "お気に入り投稿はありません"
     edit:
       title: "プロフィール編集"
       submit: "更新する"

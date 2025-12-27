@@ -16,6 +16,8 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_one_attached :profile_image # プロフィール画像
+  has_many :favorites, dependent: :destroy # お気に入り機能
+  has_many :favorite_posts, through: :favorites, source: :post # 多対多の関係
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
@@ -24,6 +26,18 @@ class User < ApplicationRecord
     id == object&.user_id
   end
   # ログインしてるユーザーID＝投稿したユーザーID
+
+  def favorite(post)
+    favorite_posts << post # お気に入り追加
+  end
+
+  def unfavorite(post)
+    favorite_posts.destroy(post) #お気に入り削除
+  end
+
+  def favorite?(post)
+    favorite_posts.include?(post) # お気に入り済み？
+  end
 
   # ファイルの種類とサイズのバリデーション（gem ActiveStorage Validationを使用）
   ACCEPTED_CONTENT_TYPES = %w[
@@ -46,5 +60,7 @@ class User < ApplicationRecord
   end
 
   # マイページ編集で名前を空にしてもusernameが設置されるようにする
+
+
 
 end

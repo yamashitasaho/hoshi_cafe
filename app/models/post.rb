@@ -10,6 +10,7 @@ class Post < ApplicationRecord
   belongs_to :shop, optional: true   # shop_idは任意
   has_one_attached :image # 画像投稿
   has_one_attached :profile_image # プロフィール画像
+  has_many :favorites, dependent: :destroy # お気に入り機能
 
   # ファイルの種類とサイズのバリデーション（gem ActiveStorage Validationを使用）
   ACCEPTED_CONTENT_TYPES = %w[
