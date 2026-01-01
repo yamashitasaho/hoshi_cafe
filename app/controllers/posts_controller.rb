@@ -24,11 +24,6 @@ class PostsController < ApplicationController
       @post.image = @post.process_and_transform_image(params[:post][:image], 1200) if params[:post][:image].present?
 
       if @post.save
-        # AnalyzeJob を無効化（メモリ節約）
-        if @post.image.attached?
-          @post.image.blob.update(metadata: { analyzed: true, identified: true })
-        end
-
         redirect_to posts_path, notice: t("defaults.flash_message.created", item: Post.model_name.human), status: :see_other
       else
         flash.now[:alert] = t("defaults.flash_message.not_created", item: Post.model_name.human)
@@ -59,12 +54,6 @@ class PostsController < ApplicationController
       @post.image = @post.process_and_transform_image(params[:post][:image], 1200) if params[:post][:image].present?
 
       if @post.update(post_params)
-
-        # AnalyzeJob を無効化（メモリ節約）
-        if @post.image.attached?
-          @post.image.blob.update(metadata: { analyzed: true, identified: true })
-        end
-
         redirect_to post_path(@post), notice: t("defaults.flash_message.updated", item: Post.model_name.human), status: :see_other
       else
         flash.now[:alert] = t("defaults.flash_message.not_updated", item: Post.model_name.human)
