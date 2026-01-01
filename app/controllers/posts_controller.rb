@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   # 自分の投稿かをチェック
 
   def index
-    @posts = Post.includes(:user)
+    @posts = Post.includes(:user).with_attached_image.order(created_at: :desc)
   end
 
   def new
@@ -13,6 +13,7 @@ class PostsController < ApplicationController
   # デフォルトで3点を設定
 
   def create
+
     setup_shop
 
     @post = current_user.posts.build(post_params)
@@ -23,6 +24,11 @@ class PostsController < ApplicationController
       @post.image = @post.process_and_transform_image(params[:post][:image], 1200) if params[:post][:image].present?
 
       if @post.save
+        # AnalyzeJob を無効化（メモリ節約）
+        if @post.image.attached?
+          @post.image.blob.update(metadata: { analyzed: true, identified: true })
+        end
+
         redirect_to posts_path, notice: t("defaults.flash_message.created", item: Post.model_name.human), status: :see_other
       else
         flash.now[:alert] = t("defaults.flash_message.not_created", item: Post.model_name.human)
@@ -53,6 +59,12 @@ class PostsController < ApplicationController
       @post.image = @post.process_and_transform_image(params[:post][:image], 1200) if params[:post][:image].present?
 
       if @post.update(post_params)
+
+        # AnalyzeJob を無効化（メモリ節約）
+        if @post.image.attached?
+          @post.image.blob.update(metadata: { analyzed: true, identified: true })
+        end
+
         redirect_to post_path(@post), notice: t("defaults.flash_message.updated", item: Post.model_name.human), status: :see_other
       else
         flash.now[:alert] = t("defaults.flash_message.not_updated", item: Post.model_name.human)
