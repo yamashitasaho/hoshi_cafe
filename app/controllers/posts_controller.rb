@@ -4,7 +4,9 @@ class PostsController < ApplicationController
   # 自分の投稿かをチェック
 
   def index
-    @posts = Post.includes(:user)
+    # @posts = Post.includes(:user) ← 全投稿（検索無視）
+    @search = Post.ransack(params[:q]) #検索
+    @posts = @search.result(distinct: true).includes(:user).order(created_at: :desc) #検索
   end
 
   def new

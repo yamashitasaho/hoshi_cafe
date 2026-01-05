@@ -1,9 +1,16 @@
 <!-- 投稿一覧 -->
 <div class="container mx-auto px-4 py-6 pb-20">
-  <h1 class="text-2xl font-bold mb-6"><%= t('.title') %></h1>
+  <%= render 'search_form', search: @search, url: posts_path %>
+
+  <% if params[:q].present? && @posts.empty? %>
+    <div class="text-center text-lg mt-6">
+      <p><%= t('defaults.no_results') %></p>
+    </div>
+  <% else %>
 
   <!-- 投稿カードグリッド -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 px-2">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 px-2 mt-6">
     <%= render @posts %>
   </div>
+  <% end %>
 </div>
