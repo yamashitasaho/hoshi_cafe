@@ -1,0 +1,14 @@
+<div class="flex gap-5 items-center">
+<div class= 'w-full'>
+<%= search_form_for search, url: url, data: { turbo: false } do |f| %>
+  <%= f.search_field :region_or_shop_name_or_body_cont, class: 'input input-primary input-lg w-full bg-neutral', placeholder: t('defaults.search_word') %>
+</div>
+    <div class="form-control">
+        <%= f.submit t('search_form.submit'), class: "btn btn-primary btn-lg btn-wide px-8 text-neutral " %>
+    </div>
+</div>
+<% end %>
+
+<%# 地域 or 店名 or 本文　の部分一致で検索%>
+<%# qはposts_controllerで定義している %>
+<%# data: { turbo: false }で押すたびにページが更新される  %>

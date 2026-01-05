@@ -29,8 +29,10 @@ ja:
       new_post: "新規投稿"
 
   defaults:
+    no_results: "投稿がありません"
     create: "作成"
     post: "投稿"
+    search_word: 地域・店名など
     delete_confirm: "削除しますか？"
     flash_message:
       created: "%{item}を作成しました"
@@ -41,3 +43,6 @@ ja:
       not_deleted: "%{item}を削除できませんでした"
     errors:
       unauthorized_access: "不正なアクセスです"
+
+  search_form:
+    submit: "検索"
