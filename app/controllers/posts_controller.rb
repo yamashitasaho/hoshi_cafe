@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   def index
     @search = Post.ransack(params[:q]) #検索
     @posts = @search.result(distinct: true).includes(:user).with_attached_image.order(created_at: :desc) #検索
+  end
 
   def new
     @post = Post.new(rating: 3, is_pr: false)
