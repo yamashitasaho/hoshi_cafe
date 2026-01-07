@@ -1,7 +1,7 @@
 <!-- 画面下部に固定するフッター -->
 <div class="dock dock-md bg-primary text-neutral">
   <!-- 投稿一覧 -->
-  <%= link_to posts_path do %>
+  <%= link_to posts_path, data: { turbo: false } do %>
   <div class="dock-label flex flex-col items-center justify-center">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search">
       <path d="m21 21-4.34-4.34"/>
