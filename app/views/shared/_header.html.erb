@@ -25,7 +25,7 @@
           <li><%= link_to t('.sign_up'), new_user_registration_path %></li>
         <% end %>
           <!-- 共通メニュー -->
-          <li><%= link_to t('.posts_index'), posts_path %></li>
+          <li><%= link_to t('.posts_index'), posts_path, data: { turbo: false } %></li>
           <li><%= link_to "アプリの使い方", root_path %></li>
           <li><a>利用規約</a></li>
           <li><a>プライバシーポリシー</a></li>
