@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
+  # OmniAuthの認証が成功したときに、コールバックとしてUsers::OmniauthCallbacksControllerが呼び出されるようにする設定
   root "static_pages#top" # TOPページ
 
   resources :posts, only: %i[index new create show edit destroy update] do # 投稿一覧,新規投稿,投稿詳細,編集,削除,更新
