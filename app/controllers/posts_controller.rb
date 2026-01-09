@@ -4,8 +4,8 @@ class PostsController < ApplicationController
   # 自分の投稿かをチェック
 
   def index
-    @search = Post.ransack(params[:q]) #検索
-    @posts = @search.result(distinct: true).includes(:user).with_attached_image.order(created_at: :desc) #検索
+    @search = Post.ransack(params[:q]) # 検索
+    @posts = @search.result(distinct: true).includes(:user).with_attached_image.order(created_at: :desc) # 検索
   end
 
   def new
@@ -14,7 +14,6 @@ class PostsController < ApplicationController
   # デフォルトで3点を設定
 
   def create
-
     setup_shop
 
     @post = current_user.posts.build(post_params)
@@ -103,5 +102,4 @@ class PostsController < ApplicationController
 
     params[:post][:shop_id] = shop.id
   end
-
 end

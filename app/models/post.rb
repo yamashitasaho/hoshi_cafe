@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   validates :shop_name, presence: true, length: { maximum: 28 }
   validates :rating, inclusion: { in: 1..5 }
   validates :body, length: { maximum: 500 }
-  validates :is_pr, inclusion: { in: [true, false] }
+  validates :is_pr, inclusion: { in: [ true, false ] }
 
   belongs_to :user
   belongs_to :shop, optional: true   # shop_idは任意
@@ -14,7 +14,7 @@ class Post < ApplicationRecord
 
   # Ransack で検索可能な属性を定義
   def self.ransackable_attributes(auth_object = nil)
-    ["body", "region", "shop_name"]
+    [ "body", "region", "shop_name" ]
   end
 
   # Ransack で検索可能な関連を定義

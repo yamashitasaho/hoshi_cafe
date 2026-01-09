@@ -8,6 +8,6 @@ class CreateFavorites < ActiveRecord::Migration[7.2]
       t.timestamps
     end
     # データベース層（DBインデックス）
-    add_index :favorites, [:user_id, :post_id], unique: true
+    add_index :favorites, [ :user_id, :post_id ], unique: true
   end
 end
