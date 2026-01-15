@@ -83,7 +83,7 @@
       </div>
 
       <!-- 右側：Xシェアボタン -->
-        <%= link_to "https://twitter.com/share?url=#{post_url(@post)}&text=【#{@post.region}のカフェ好き必見☕️】%0a hoshi cafeで#{@post.shop_name}の投稿をチェック！",
+        <%= link_to "https://twitter.com/share?url=#{post_url(@post)}&text=【#{@post.region}のカフェ好き必見☕️】%0a hoshi cafeで#{@post.shop_name}の投稿をチェック！%0a &hashtags=カフェ,#{@post.region}カフェ,hoshicafe",
             target: '_blank', #リンクを新しいウィンドウまたはタブで開く
             class: "btn btn-sm bg-primary text-neutral" do %>
               <svg aria-label="X logo" width="16" height="12" viewBox="0 0 300 271" xmlns="http://www.w3.org/2000/svg">
