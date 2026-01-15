@@ -9,6 +9,16 @@
 
     <%= yield :head %>
 
+    <!-- Twitterカード / OGP -->
+    <% if @post %>
+      <% twitter_card = get_twitter_card_info(@post) %>
+      <meta name="twitter:card" content="<%= twitter_card[:card] %>" />
+      <meta property="og:url" content="<%= twitter_card[:url] %>" />
+      <meta property="og:title" content="<%= twitter_card[:title] %>" />
+      <meta property="og:description" content="<%= twitter_card[:description] %>" />
+      <meta property="og:image" content="<%= twitter_card[:image] %>" />
+    <% end %>
+
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
