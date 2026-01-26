@@ -29,4 +29,7 @@ Rails.application.routes.draw do
 
   # プロフィール
   resources :profiles, only: %i[show edit update]
+
+  # 開発環境でのメール確認
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end
