@@ -8,5 +8,72 @@
       class: "btn btn-primary btn-base sm:btn-lg text-neutral" %>
   <%= link_to "ログインする", new_user_session_path,
       class: "btn btn-primary btn-base sm:btn-lg text-neutral" %>
+  </div>
 </div>
+
+<%# アプリの使い方 - ここは固定 %>
+<div class="flex flex-col items-center text-center text-accent pt-8 mb-8">
+  <div class="text-3xl font-bold">hoshi cafeの特徴</div>
+  <p class="text-sm mt-2">スクロールできます→</p>
 </div>
+
+<!-- カードエリアだけスクロール - containerを削除 -->
+<div class="mb-20">
+  <div class="carousel rounded-box w-full">
+    
+    <!-- カード1 -->
+    <div class="carousel-item px-4">
+      <div class="card bg-neutral shadow-xl w-80 text-acccent">
+        <div class="card-body">
+          <h2 class="card-title">カフェを探す</h2>
+          <p>エリアや店名、キーワードでカフェを探すことができます</p>
+          <div class="mt-4">
+            <%= image_tag "search_posts.png", class: "rounded-lg w-full" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- カード2 -->
+    <div class="carousel-item pr-4">
+      <div class="card bg-neutral shadow-xl w-80">
+        <div class="card-body">
+          <h2 class="card-title">カフェを探す</h2>
+          <p>エリアやジャンルで検索</p>
+          <div class="mt-4">
+            <%= image_tag "posts_list.png", class: "rounded-lg w-full" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- カード3 -->
+    <div class="carousel-item pr-4">
+      <div class="card bg-neutral shadow-xl w-80">
+        <div class="card-body">
+          <h2 class="card-title">投稿する</h2>
+          <p>お気に入りのカフェをシェア</p>
+          <div class="mt-4">
+            <%= image_tag "posts_list.png", class: "rounded-lg w-full" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- カード4 -->
+    <div class="carousel-item pr-4">
+      <div class="card bg-neutral shadow-xl w-80">
+        <div class="card-body">
+          <h2 class="card-title">共有する</h2>
+          <p>友達にシェア</p>
+          <div class="mt-4">
+            <%= image_tag "posts_list.png", class: "rounded-lg w-full" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
