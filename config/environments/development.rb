@@ -35,6 +35,11 @@ Rails.application.configure do
   config.active_storage.service = :local
   # ファイルをローカルに保存する
 
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # メール内のリンクを生成するときの設定
+  Rails.application.routes.default_url_options[:host] = 'localhost:3000'
+  # アプリ全体でURL生成するときのホスト情報
+
   # Don't care if the mailer can't send. メール送信に失敗してもエラーを出さない
   config.action_mailer.raise_delivery_errors = false
 
