@@ -1,4 +1,11 @@
 ja:
+  static_pages:
+    top:
+      terms: "利用規約"
+      privacy: "プライバシーポリシー"
+      contact: "お問い合わせ"
+    terms:
+      title: "利用規約"
   posts:
     index:
       title: "投稿一覧"
@@ -25,6 +32,9 @@ ja:
       new_post: "新規投稿"
       posts_index: "投稿一覧"
       my_page: "マイページ"
+      top_page: "アプリの使い方"
+      terms: "利用規約"
+      privacy: "プライバシーポリシー"
     footer:
       new_post: "新規投稿"
 
