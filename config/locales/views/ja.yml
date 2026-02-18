@@ -6,6 +6,8 @@ ja:
       contact: "お問い合わせ"
     terms:
       title: "利用規約"
+    privacy:
+      title: "プライバシーポリシー"
   posts:
     index:
       title: "投稿一覧"
