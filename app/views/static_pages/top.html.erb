@@ -76,12 +76,6 @@
 
   </div>
   <!-- 利用規約、プライバシーポリシー、お問い合わせ -->
-<div class='mt-6'>
-  <div class='flex justify-center space-x-10 items-center'>
-    <%= link_to t('.terms'), terms_path %>
-    <%= link_to t('.privacy'), privacy_path %>
-    <%= link_to t('.contact'), privacy_path%>
-  </div>
-</div>
+    <%= render 'shared/links' %>
 
 </div>

@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   # OmniAuthの認証が成功したときに、コールバックとしてUsers::OmniauthCallbacksControllerが呼び出されるようにする設定
   root "static_pages#top" # TOPページ
 
-  get 'terms', to: 'static_pages#terms' # 利用規約
-  get 'privacy', to: 'static_pages#privacy' # プライバシーポリシー
+  get "terms", to: "static_pages#terms" # 利用規約
+  get "privacy", to: "static_pages#privacy" # プライバシーポリシー
 
   resources :posts, only: %i[index new create show edit destroy update] do # 投稿一覧,新規投稿,投稿詳細,編集,削除,更新
     collection do # postリソース全体にアクションを追加(IDがない)
