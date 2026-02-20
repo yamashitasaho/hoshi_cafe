@@ -1,9 +1,5 @@
 ja:
   static_pages:
-    top:
-      terms: "利用規約"
-      privacy: "プライバシーポリシー"
-      contact: "お問い合わせ"
     terms:
       title: "利用規約"
     privacy:
@@ -37,8 +33,13 @@ ja:
       top_page: "アプリの使い方"
       terms: "利用規約"
       privacy: "プライバシーポリシー"
+      contact: "お問い合わせ"
     footer:
       new_post: "新規投稿"
+    links:
+      terms: "利用規約"
+      privacy: "プライバシーポリシー"
+      contact: "お問い合わせ"
 
   defaults:
     no_results: "投稿がありません"
