@@ -3,5 +3,5 @@ class Shop < ApplicationRecord
   validates :name, presence: true
 
   has_many :posts, dependent: :nullify
-  # shopが消されたら、nullにする
+  # shopが消されたら、そのshopに紐づいているpostのshop_idをnullにする
 end
