@@ -13,6 +13,7 @@ amazon:
   secret_access_key: <%= Rails.application.credentials.dig(:aws, :secret_access_key) %>
   region: ap-northeast-1
   bucket: hoshi-cafe-images-tokyo
+  public: true # 署名なしの公開URLが返ってくる
 
 # Remember not to checkin your GCS keyfile to a repository
 # google:
