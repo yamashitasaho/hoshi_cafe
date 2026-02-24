@@ -10,7 +10,7 @@ module ApplicationHelper
 
         # 画像の有無で分岐
         if post.image.attached?
-          twitter_card[:image] = url_for(post.image)
+          twitter_card[:image] = post.image.url
         else
           twitter_card[:image] = image_url("coffee.jpg")
         end
