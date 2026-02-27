@@ -1,4 +1,9 @@
 ja:
+  static_pages:
+    terms:
+      title: "利用規約"
+    privacy:
+      title: "プライバシーポリシー"
   posts:
     index:
       title: "投稿一覧"
@@ -9,6 +14,14 @@ ja:
     form:
       submit: "投稿する"
 
+  profiles:
+    show:
+      title: "プロフィール"
+      no_result: "お気に入り投稿はありません"
+    edit:
+      title: "プロフィール編集"
+      submit: "更新する"
+
   shared:
     header:
       sign_up: "新規登録"
@@ -17,12 +30,22 @@ ja:
       new_post: "新規投稿"
       posts_index: "投稿一覧"
       my_page: "マイページ"
+      top_page: "アプリの使い方"
+      terms: "利用規約"
+      privacy: "プライバシーポリシー"
+      contact: "お問い合わせ"
     footer:
-      sign_up: "新規登録"
+      new_post: "新規投稿"
+    links:
+      terms: "利用規約"
+      privacy: "プライバシーポリシー"
+      contact: "お問い合わせ"
 
   defaults:
+    no_results: "投稿がありません"
     create: "作成"
     post: "投稿"
+    search_word: 地域・店名など
     delete_confirm: "削除しますか？"
     flash_message:
       created: "%{item}を作成しました"
@@ -33,3 +56,6 @@ ja:
       not_deleted: "%{item}を削除できませんでした"
     errors:
       unauthorized_access: "不正なアクセスです"
+
+  search_form:
+    submit: "検索"

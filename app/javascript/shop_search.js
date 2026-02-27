@@ -33,9 +33,9 @@ document.addEventListener("turbo:load", () => {
 
         try {
             const response = await fetch(`/shops/search_place?query=${encodeURIComponent(query)}&t=${Date.now()}`);
-            // ↑ GET /shops/search_place?query=京都%20スターバックス京都駅店
+            // ↑ GET /shops/search_place?query=京都%20スターバックス京都駅店　（featchでリロードせずにshopsコントローラーのsearch_placeアクションに情報を送る）
             const data = await response.json();
-            // ↑ レスポンスをJSONに変換
+            // ↑ レスポンスをJSONに変換　（Google Place APIから受け取った情報をJSON形式でJavaScriptに返してきたものを、response.json() で受け取って data に入れている)
             // 例: { found: true, places: [{...}, {...}] }
 
             if (data.error) {

@@ -8,5 +8,74 @@
       class: "btn btn-primary btn-base sm:btn-lg text-neutral" %>
   <%= link_to "ログインする", new_user_session_path,
       class: "btn btn-primary btn-base sm:btn-lg text-neutral" %>
+  </div>
 </div>
+
+<%# アプリの使い方 - ここは固定 %>
+<div class="flex flex-col items-center text-center text-accent pt-8 mb-8">
+  <div class="text-3xl font-bold">hoshi cafeの特徴</div>
+  <p class="text-sm mt-2">スクロールできます→</p>
+</div>
+
+<!-- カードエリアだけスクロール - containerを削除 -->
+<div class="mb-20">
+  <div class="carousel rounded-box w-full">
+    
+    <!-- カード1 -->
+    <div class="carousel-item px-4">
+      <div class="card bg-neutral shadow-xl w-80 text-accent">
+        <div class="card-body">
+          <h2 class="card-title">カフェを探す</h2>
+          <p>エリアや店名、キーワードで好きなカフェを探すことができます</p>
+          <div class="mt-4">
+            <%= image_tag "search_posts.png", class: "rounded-lg w-full" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- カード2 -->
+    <div class="carousel-item pr-4">
+      <div class="card bg-neutral shadow-xl w-80">
+        <div class="card-body">
+          <h2 class="card-title">新規投稿</h2>
+          <p>エリアと店名で店舗詳細を自動表示、<br>
+          星で五段階評価、PRの有無を記入できます</p>
+          <div class="mt-4">
+            <%= image_tag "new_post.png", class: "rounded-lg w-full" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- カード3 -->
+    <div class="carousel-item pr-4">
+      <div class="card bg-neutral shadow-xl w-80">
+        <div class="card-body">
+          <h2 class="card-title">マップ検索</h2>
+          <p>投稿の「Google Mapsで見る」ボタンを押すと、お店までの最適な経路をGoogleマップで確認できます</p>
+          <div class="mt-4">
+            <%= image_tag "google_map.png", class: "rounded-lg w-full" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- カード4 -->
+    <div class="carousel-item pr-4">
+      <div class="card bg-neutral shadow-xl w-80">
+        <div class="card-body">
+          <h2 class="card-title">お気に入り機能</h2>
+          <p>お気に入り♡投稿、自分の投稿をプロフィール画面で確認できます</p>
+          <div class="mt-4">
+            <%= image_tag "favorite_posts.png", class: "rounded-lg w-full" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- 利用規約、プライバシーポリシー、お問い合わせ -->
+    <%= render 'shared/links' %>
+
 </div>

@@ -33,11 +33,13 @@ Rails.application.configure do
   # config.asset_host = "http://assets.example.com"
 
   # Specifies the header that your server uses for sending files.
-  # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for Apache
+  # config.action_dispatch.x_sendfile_header = "X-Sendfile" # pfor Apache
   # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  # config.active_storage.service = :localこれを下記に変更
+  config.active_storage.service = :amazon
+  # ファイルをAmazon S3に保存する
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
@@ -65,7 +67,9 @@ Rails.application.configure do
   # "info" includes generic and useful information about system operation, but avoids logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII). If you
   # want to log everything, set the level to "debug".
-  config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
+  # Deviseのパスワードリセットトークン漏洩を防ぐため、デフォルトをwarnに設定
+  # 必要に応じて RAILS_LOG_LEVEL 環境変数で変更可能
+  config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "warn")
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
@@ -78,6 +82,18 @@ Rails.application.configure do
   # caching is enabled.
   config.action_mailer.perform_caching = false
 
+  config.action_mailer.default_url_options = { host: "hoshi-cafe.onrender.com/" }
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+  address:              "smtp.gmail.com",
+  port:                 587,
+  domain:               "gmail.com",
+  user_name:            ENV["MAILER_SENDER"],
+  password:             ENV["MAILER_PASSWORD"],
+  authentication:       "plain",
+  enable_starttls_auto: true
+}
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false

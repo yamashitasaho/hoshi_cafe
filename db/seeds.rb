@@ -1,3 +1,9 @@
+# ユーザー作成（seed データだけ先に削除）
+# seed で投入された user1～user14 を削除
+User.where(id: 1..14).destroy_all
+Post.where(user_id: 1..14).destroy_all
+
+=begin
 # ユーザー作成（usernameで英数のみ）
 if User.count == 0 && Post.count == 0
 # デプロイ時の重複を防ぐ
@@ -56,3 +62,4 @@ if User.count == 0 && Post.count == 0
 else
   puts "データが既に存在するためseedをスキップしました"
 end
+=end

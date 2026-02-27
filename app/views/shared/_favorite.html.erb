@@ -1,0 +1,4 @@
+<%# 空ハートをクリックしたらお気に入りにする %>
+<%= link_to favorites_path(post_id: post.id), id: "favorite-button-for-post-#{post.id}", data: { turbo_method: :post} do %>
+  <i class="w-6 h-6 inline-block mask mask-heart bg-secondary"></i>
+<% end %>

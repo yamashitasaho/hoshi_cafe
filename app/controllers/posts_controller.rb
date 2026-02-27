@@ -4,11 +4,12 @@ class PostsController < ApplicationController
   # 自分の投稿かをチェック
 
   def index
-    @posts = Post.includes(:user)
+    @search = Post.ransack(params[:q]) # 検索
+    @posts = @search.result(distinct: true).includes(:user).with_attached_image.order(created_at: :desc) # 検索
   end
 
   def new
-    @post = Post.new(rating: 3)
+    @post = Post.new(rating: 3, is_pr: false)
   end
   # デフォルトで3点を設定
 
@@ -20,7 +21,7 @@ class PostsController < ApplicationController
 
     begin
       # 画像を処理して更新
-      @post.image = @post.process_and_transform_image(params[:post][:image], 854) if params[:post][:image].present?
+      @post.image = @post.process_and_transform_image(params[:post][:image], 1200) if params[:post][:image].present?
 
       if @post.save
         redirect_to posts_path, notice: t("defaults.flash_message.created", item: Post.model_name.human), status: :see_other
@@ -36,7 +37,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.includes(:user).find(params[:id])
   end
 
   def edit
@@ -46,11 +47,22 @@ class PostsController < ApplicationController
   def update
     setup_shop
     # @postは set_user_post で既にセット済み
-    if @post.update(post_params)
-      redirect_to post_path(@post), notice: t("defaults.flash_message.updated", item: Post.model_name.human), status: :see_other
-    else
-      flash.now[:alert] = t("defaults.flash_message.not_updated", item: Post.model_name.human)
-      render :edit, status: :unprocessable_entity
+
+
+    # 画像を処理して更新
+    begin
+      @post.image = @post.process_and_transform_image(params[:post][:image], 1200) if params[:post][:image].present?
+
+      if @post.update(post_params)
+        redirect_to post_path(@post), notice: t("defaults.flash_message.updated", item: Post.model_name.human), status: :see_other
+      else
+        flash.now[:alert] = t("defaults.flash_message.not_updated", item: Post.model_name.human)
+        render :edit, status: :unprocessable_entity
+      end
+
+    rescue ImageProcessable::ImageProcessingError => e
+      flash.now[:alert] = e.message
+      render :edit
     end
   end
 
@@ -60,10 +72,15 @@ class PostsController < ApplicationController
   end
   # HTTPステータスコード 303 "See Other" を送信
 
+  def favorites
+    @posts = current_user.favorite_posts
+  end
+  # お気に入りした投稿の一覧
+
   private
 
   def post_params
-    params.require(:post).permit(:region, :shop_name, :rating, :body, :shop_id, :image)
+    params.require(:post).permit(:region, :shop_name, :rating, :body, :shop_id, :is_pr)
   end
   # :imageを追加(画像)
 

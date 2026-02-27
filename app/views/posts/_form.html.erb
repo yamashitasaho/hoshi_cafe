@@ -1,3 +1,4 @@
+<!-- 新規投稿 -->
 <!-- 入力フォーム -->
 <%# local: true ← Turbo Drive で送信しない（通常の form 送信）%>
 <%= form_with model: @post, local: true do |f| %>
@@ -58,6 +59,16 @@
             <% end %>
            </div>
       </div>
+
+      <!-- PR -->
+      <div class="form-control mb-4">
+        <%= f.label :is_pr, class: "label-accent" do %>
+        <%= f.check_box :is_pr, class: "checkbox checkbox-sm border-primary border-2"%>
+          PR投稿の場合はチェックしてください
+        <% end %>
+      </div>
+
+
 
       <!-- 画像 -->
       <div class="form-control mb-4">
