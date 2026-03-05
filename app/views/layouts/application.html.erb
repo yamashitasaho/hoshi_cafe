@@ -3,11 +3,28 @@
   <head>
     <title><%= content_for(:title) || "Myapp" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= yield :head %>
+
+    <!-- PWA設定ファイルの読み込み -->
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Androidのステータスバー・アドレスバーの色 -->
+  <meta name="theme-color" content="#A67C6B">
+
+  <!-- iPhoneでホーム画面追加した時にアプリとして動かすための設定 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <!-- iPhoneのステータスバーのスタイル（default=白背景） -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <!-- iPhoneのホーム画面に表示されるアプリ名 -->
+  <meta name="apple-mobile-web-app-title" content="hoshicafe">
+
+  <!-- iPhoneのホーム画面に表示されるアイコン画像 -->
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
 
     <!-- Twitterカード / OGP -->
     <% if @post&.persisted? %>
@@ -19,10 +36,8 @@
       <meta property="og:image" content="<%= twitter_card[:image] %>" />
     <% end %>
 
-    <link rel="manifest" href="/manifest.json">
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>

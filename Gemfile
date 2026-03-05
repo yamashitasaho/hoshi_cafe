@@ -66,9 +66,9 @@ group :test do
   gem "rubocop-rails", require: false
 end
 
-gem "tailwindcss-rails", "~> 4.3"
+gem "tailwindcss-rails", "~> 4.4"
 
-gem "devise", "~> 4.9"
+gem "devise", "~> 5.0"
 gem "devise-i18n"
 gem "rails-i18n"
 gem "dotenv-rails", groups: [ :development, :test ]
