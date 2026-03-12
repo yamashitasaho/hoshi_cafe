@@ -92,13 +92,13 @@ class PostsController < ApplicationController
   def setup_shop
     return unless params[:post][:place_id].present?
 
-    shop = Shop.find_or_create_by(place_id: params[:post][:place_id]) do |s|
-      s.name = params[:post][:shop_name]
-      s.address = params[:post][:address]
-      s.google_map_url = params[:post][:google_map_url]
-      s.phone_number = params[:post][:phone_number]
-      s.business_hours = params[:post][:business_hours]
-    end
+    shop = Shop.find_or_initialize_by(place_id: params[:post][:place_id])
+      shop.name = params[:post][:shop_name]
+      shop.address = params[:post][:address]
+      shop.google_map_url = params[:post][:google_map_url]
+      shop.phone_number = params[:post][:phone_number]
+      shop.business_hours = params[:post][:business_hours]
+      shop.save!
 
     params[:post][:shop_id] = shop.id
   end
