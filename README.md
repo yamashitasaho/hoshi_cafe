@@ -106,6 +106,10 @@ PRかどうかが投稿に明示されるため、ユーザーが自分で判断
 
 ---
 
+## ER図
+[![Image from Gyazo](https://i.gyazo.com/cca5881d116b76a1fb4b1f44c4dedcab.jpg)](https://gyazo.com/cca5881d116b76a1fb4b1f44c4dedcab)
+
+
 ## 画面遷移図
 
 [Figma で確認する](https://www.figma.com/design/DcABATuumX4IbAq62FhHYB/%E6%98%9F%E3%82%AB%E3%83%95%E3%82%A7%E3%82%A2%E3%83%97%E3%83%AA?node-id=71-4546&p=f&t=Vv5xeOXlVcbtQXJX-0)
