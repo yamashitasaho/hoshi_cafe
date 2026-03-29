@@ -92,18 +92,18 @@ PRかどうかが投稿に明示されるため、ユーザーが自分で判断
 
 | カテゴリ | 技術 |
 |------|------|
-| バックエンド | Ruby 3.2.3 / Rails 7.1.3.4 |
-| フロントエンド | HTML / JavaScript / Tailwind CSS |
+| バックエンド | Ruby 3.3.6 / Rails 7.2.1 |
+| フロントエンド | HTML / JavaScript / Tailwind CSS / Turbo |
 | データベース | PostgreSQL（Render） |
 | ファイルストレージ | AWS S3 |
 | 認証 | Devise / Google OAuth |
 | 外部API | Google Place API / Google Maps Embed API |
 | 画像アップロード | ActiveStorage |
 | 検索 | Ransack |
+| テスト | RSpec |
 | インフラ | Render |
 | 開発環境 | Docker |
 | バージョン管理 | GitHub |
-
 ---
 
 ## ER図
